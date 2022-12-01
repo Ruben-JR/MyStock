@@ -5,34 +5,57 @@
 <hr>
 
 <h3>About this project</h3>
-<p></p>
+<p>
+The idea of this projects is create a CRUD projects in Angular framework, create a small backend with json-server and create a simple aplication to providing a simple way to learn more about this technology
+</p>
 <hr>
 
 <h3>Why</h3>
-<p></p>
+<p>
+This projects is a part of my personal skills. I want to learn more about this framework and pratices to make me a better developer
+</p>
 <hr>
 
 <h3>Some Observations about this App</h3>
-<p></p>
+<p>
+<ol>
+  <li>There's no functionality of Login/Register.</li>
+  <li>The only option that works is the menu and the crud method.</li>
+</ol>
+</p>
 <hr>
 
 <h3>Functionalities</h3>
-<p></p>
+<p>
+<ul>
+    <li>Create item</li>
+    <li>Read item</li>
+    <li>Update item</li>
+    <li>Delete item</li>
+  </ul>
+</p>
 <hr>
 
 <h3>Getting Started</h3>
 <h4>Prerequisites</h4>
+<p>
+To run this project in the development mode, you'll need to have a basic environment to run the angular app.
+</p>
+
 
 <h4>Installing</h4>
-
 <h5>Cloning the Repository</h5>
+ - git clone
+
+cd Angular-9
 
 <h5>Installing dependencies</h5>
-<p></p>
+<p>Inside the frontend folder</p>
+    - npm install
 <hr>
 
 <h3>Running</h3>
-<p></p>
+ng serve --open
 <hr>
 
 <h3>Built With</h3>
