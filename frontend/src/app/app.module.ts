@@ -11,6 +11,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { BodyComponent } from './components/body/body.component';
+import { ProductsComponent } from './components/products/products.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { BodyComponent } from './components/body/body.component';
     SidenavComponent,
     ToolbarComponent,
     BodyComponent,
+    ProductsComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

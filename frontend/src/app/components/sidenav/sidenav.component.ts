@@ -3,7 +3,7 @@ import { Component, OnInit, Output, EventEmitter, HostListener } from '@angular/
 import { navbarData } from './nav-data';
 
 interface SideNavToggle {
-  screnWidth: number;
+  screenWidth: number;
   collapsed: boolean;
 }
 
@@ -30,8 +30,8 @@ interface SideNavToggle {
       transition(':enter', [
         animate('1000ms',
           keyframes([
-            style({transfom: 'rotate(0deg', offset : '0'}),
-            style({transform: 'rotate(2trun', offset: '1'}),
+             style({transform: 'rotate(0deg)', offset: '0'}),
+             style({transform: 'rotate(2turn)', offset: '1'}),
           ])
         )
       ])
@@ -40,32 +40,33 @@ interface SideNavToggle {
 })
 
 export class SidenavComponent implements OnInit {
-  @Output() onTogglesideNav: EventEmitter<SideNavToggle> = new EventEmitter();
+  @Output() onToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
   collapsed = false;
-  screnWidth = 0;
+  screenWidth = 0;
   navData = navbarData;
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
   @HostListener('window:resize', ['$event'])
   onResize(event: any){
-    this.screnWidth = window.innerWidth;
-    if(this.screnWidth <= 768){
+    this.screenWidth = window.innerWidth;
+    if(this.screenWidth <= 768){
       this.collapsed = false;
-      this.onTogglesideNav.emit({collapsed: this.collapsed, screnWidth: this.screnWidth});
+      this.onToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
     }
   }
 
-  toogleCollapsed(): void {
-    this.collapsed = !this.collapsed;
-    this.onTogglesideNav.emit({collapsed: this.collapsed, screnWidth: this.screnWidth});
+  ngOnInit(): void {
+    this.screenWidth = window.innerWidth;
   }
 
-  closeSideNav(): void {
+  toogleCollapse(): void {
+    this.collapsed = !this.collapsed;
+    this.onToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
+  }
+
+  closeSidenav(): void {
     this.collapsed = false;
-    this.onTogglesideNav.emit({collapsed: this.collapsed, screnWidth: this.screnWidth});
+    this.onToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
   }
 }
