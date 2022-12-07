@@ -15,15 +15,12 @@
     width: 100%
 }
 
-.sidenav .logo-container .logo {
-    text-align: center;
-    width: 135px;
+.sidenav .logo-container .menu {
+    width: 150px;
     min-width: 3rem;
     border-radius: 0.313rem;
     padding: 0.313rem;
     cursor: pointer;
-    border: none;
-    margin-left: 3%;
 }
 
 .sidenav .logo-container .btn-close {
@@ -87,7 +84,7 @@
 }
 
 .sidenav-nav-item .sidenav-nav-link:hover {
-    background-color: #f9a30b;
+    background-color: #6c49ea;
 }
 
 
