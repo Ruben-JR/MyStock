@@ -24,7 +24,7 @@ import { HomeComponent } from './components/home/home.component';
     ToolbarComponent,
     BodyComponent,
     ProductsComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +34,7 @@ import { HomeComponent } from './components/home/home.component';
     MatSidenavModule,
     MatListModule,
     BrowserAnimationsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

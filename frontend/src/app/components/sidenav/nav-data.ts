@@ -1,12 +1,12 @@
 export const navbarData = [
     {
         routerLink: 'home',
-        icon: 'fal fa-home',
+        icon: 'fa-solid fa-home',
         label: 'Home'
     },
     {
         routerLink: 'products',
-        icon: 'fal fa-home',
+        icon: 'fal fa-bags-shopping',
         label: 'Products'
     }
 ];
