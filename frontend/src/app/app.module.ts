@@ -4,6 +4,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from'@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
@@ -33,6 +34,7 @@ import { HomeComponent } from './components/home/home.component';
     MatIconModule,
     MatSidenavModule,
     MatListModule,
+    MatCardModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
   ],
