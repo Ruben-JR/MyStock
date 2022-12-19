@@ -1,0 +1,7 @@
+.add {
+    display: table-cell;
+    max-width: 600px;
+    background-color: #643deb;
+    border-radius: 5px;
+    color: #fff;
+}

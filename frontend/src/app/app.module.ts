@@ -14,8 +14,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { BodyComponent } from './components/body/body.component';
-import { ProductsComponent } from './components/products/products.component';
 import { HomeComponent } from './components/home/home.component';
+import { EmployeeComponent } from './components/employee/employee.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +24,8 @@ import { HomeComponent } from './components/home/home.component';
     SidenavComponent,
     ToolbarComponent,
     BodyComponent,
-    ProductsComponent,
     HomeComponent,
+    EmployeeComponent,
   ],
   imports: [
     BrowserModule,

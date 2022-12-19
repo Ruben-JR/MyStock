@@ -5,8 +5,8 @@ export const navbarData = [
         label: 'Home'
     },
     {
-        routerLink: 'products',
+        routerLink: 'employee',
         icon: 'fal fa-bags-shopping',
-        label: 'Products'
+        label: 'Employee'
     }
 ];
