@@ -1,7 +1,45 @@
-.add {
-    display: table-cell;
-    max-width: 600px;
+.btn {
+    appearance: none;
     background-color: #643deb;
-    border-radius: 5px;
-    color: #fff;
+    border: 2px solid #643deb;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    margin: 1% 5% 0% 80%;
+    min-height: 10px;
+    max-width: 200px;
+    outline: none;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 100%;
+    will-change: transform;
+}
+
+.btn:disabled {
+    pointer-events: none;
+}
+
+.btn:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    box-shadow: none;
+    transform: translateY(0);
+}
+
+table {
+    width: 100%;
 }

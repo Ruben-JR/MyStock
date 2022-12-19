@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from'@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material';
+import { MatTableModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
@@ -37,6 +38,7 @@ import { EmployeeComponent } from './components/employee/employee.component';
     MatCardModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
