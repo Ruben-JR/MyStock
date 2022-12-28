@@ -6,10 +6,11 @@
     "frontend": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:class": {
+        "@schematics/angular:component": {
+          "style": "scss",
           "skipTests": true
         },
-        "@schematics/angular:component": {
+        "@schematics/angular:class": {
           "skipTests": true
         },
         "@schematics/angular:directive": {
@@ -43,13 +44,13 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -111,12 +112,13 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
@@ -125,6 +127,6 @@
     }
   },
   "cli": {
-    "analytics": "3614ec8d-dc21-4f76-804c-6512e7c6fae9"
+    "analytics": "f98efef6-4570-46b2-8114-09845bdbd6bf"
   }
 }
