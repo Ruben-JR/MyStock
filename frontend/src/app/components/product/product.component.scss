@@ -1,0 +1,23 @@
+.d-flex {
+    margin: 2% 0% 0% 90%;
+}
+
+.add:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.table {
+    margin: 3% 0% 0% 0%;
+    background-color: #fff;
+    box-shadow: 0.063rem 0 1.10rem 0 #8690a3;
+
+    .btn-table {
+        margin: 0% 3% 0% 3%;
+    }
+
+    .btn-table:hover {
+        background-color: #fff;
+        color: #000;
+    }
+}
