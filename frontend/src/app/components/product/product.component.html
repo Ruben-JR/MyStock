@@ -1,1 +1,92 @@
-<p>product works!</p>
+<div class="d-flex">
+  <button mat-button class="add" data-bs-toggle="modal" data-bs-target="#exampleModal">Add product</button>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Fornecedor</th>
+      <th scope="col">Designação</th>
+      <th scope="col">testes/embal</th>
+      <th scope="col">Fabricante</th>
+      <th scope="col">N. Ref</th>
+      <th scope="col">Lote</th>
+      <th scope="col">Apres.</th>
+      <th scope="col">Preço/uni-EURO</th>
+      <th scope="col">Preço/uni-ECV</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+      <td>
+        <button mat-button class="btn-table">Edit</button>
+        <button mat-button class="btn-table">Delete</button>
+      </td>
+  </tbody>
+</table>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Product details</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formValue">
+          <div class="mb-3">
+            <label for="exampleInputFornecedor" class="form-label">Fornecedor</label>
+            <input type="text" class="form-control" formControlName="fornecedor" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputDesignacao" class="form-label">Designação</label>
+            <input type="text" class="form-control" formControlName="designacao" id="exampleInputDesignacao">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputFabricante" class="form-label">Fabricante</label>
+            <input type="text" class="form-control" formControlName="fabricante" id="exampleInputFabricante">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputNumRef" class="form-label">N. Ref</label>
+            <input type="text" class="form-control" formControlName="numRef" id="exampleInputNumRef">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputLote" class="form-label">Lote</label>
+            <input type="text" class="form-control" formControlName="lote" id="exampleInputLote">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputTesteEmbal" class="form-label">Testes/embal</label>
+            <input type="text" class="form-control" formControlName="testeEmbal" id="exampleInputTesteEmbal">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputApres" class="form-label">Apres.</label>
+            <input type="text" class="form-control" formControlName="apres" id="exampleInputApres">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPrecoEURO" class="form-label">Preço/uni-EURO.</label>
+            <input type="text" class="form-control" formControlName="precoEuro" id="exampleInputPrecoEURO">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPrecoECV" class="form-label">Preço/uni-ECV.</label>
+            <input type="text" class="form-control" formControlName="precoEscudo" id="exampleInputPrecoECV">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
