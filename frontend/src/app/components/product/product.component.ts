@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms'
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from 'src/app/service/api.service';
 
 @Component({
   selector: 'app-product',
@@ -7,21 +8,49 @@ import { FormBuilder, FormGroup } from '@angular/forms'
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
-  formValue !: FormGroup;
+  @Input() 
+  id = this.actRoute.snapshot.params['id'];
+  productDetails = { fornecedor: '', designacao: '', fabricante: '', numRef: 0, lote: '', testeEmbal: '', apres: '', precoEuro: 0, precoEscudo: 0 };
+  Product: any = [];
+  productData: any = {};
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(public api: ApiService, public router: Router, public actRoute: ActivatedRoute,) { }
 
   ngOnInit(): void {
-    this.formValue = this.formBuilder.group({
-      fornecedor: [''],
-      designacao: [''],
-      fabricante: [''],
-      numRef: [''],
-      lote: [''],
-      testeEmbal: [''],
-      apres: [''],
-      precoEuro: [''],
-      precoEscudo: [''],
-    })
+    // this.getProduct();
+  }
+  
+  createProduct(dataProduct: any) {
+    this.api.createProduct(this.productDetails).subscribe((data: {}) => {
+      this.router.navigate(['/product']);
+    });
+  }
+
+  getProduct() {
+    return this.api.getProducts().subscribe((data: {}) => {
+      this.Product = data;
+    });
+  }
+  
+  getProductId() {
+    this.api.getProductsId(this.id).subscribe((data: {}) => {
+      this.productData = data;
+    });
+  }
+
+  updateProduct() {
+    if(window.confirm("Are you sure, you want to update?")) {
+      this.api.updateProduct(this.id, this.productData).subscribe(data => {
+        this.router.navigate(['/product'])
+      });
+    }
+  }
+
+  deleteProduct(id: any){
+    if(window.confirm('Are you sure, you want to delete?')) {
+      this.api.deleteProduct(id).subscribe((data) => {
+        this.getProduct();
+      });
+    }
   }
 }

@@ -1,5 +1,16 @@
 .d-flex {
     margin: 2% 0% 0% 90%;
+
+    .add {
+        background-color: #263238;
+        color: #fff;
+        border-color: #263238;
+    }
+
+    .add:hover {
+        background-color: #fff;
+        color: #000;
+    }
 }
 
 .add:hover {
@@ -14,6 +25,9 @@
 
     .btn-table {
         margin: 0% 3% 0% 3%;
+        background-color: #263238;
+        color: #fff;
+        border-color: #263238;
     }
 
     .btn-table:hover {
