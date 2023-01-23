@@ -20,7 +20,7 @@ export class ProductComponent implements OnInit {
     // this.getProduct();
   }
   
-  createProduct(dataProduct: any) {
+  createProduct() {
     this.api.createProduct(this.productDetails).subscribe((data: {}) => {
       this.router.navigate(['/product']);
     });

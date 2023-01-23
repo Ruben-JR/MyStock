@@ -29,10 +29,10 @@
       <td>{{ products.precoEuro }}</td>
       <td>{{ products.precoEscudo }}</td>
       <td>
-        <button mat-button class="btn-table" (click)="updateProduct()">Edit</button>
+        <button mat-button class="btn-table" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="updateProduct()">Edit</button>
         <button mat-button class="btn-table" (click)="deleteProduct(Product.id)">Delete</button>
       </td>
-  </tbody>
+    </tbody>
 </table>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -83,7 +83,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="createProduct">Add</button>
+        <button type="button" class="btn btn-primary" (click)="createProduct()">Add</button>
       </div>
     </div>
   </div>
