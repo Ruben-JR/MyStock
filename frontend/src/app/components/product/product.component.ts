@@ -9,7 +9,6 @@ import { ApiService } from 'src/app/service/api.service';
 })
 export class ProductComponent implements OnInit {
   @Input() 
-  id = this.actRoute.snapshot.params['id'];
   productDetails = { fornecedor: '', designacao: '', fabricante: '', numRef: 0, lote: '', testeEmbal: '', apres: '', precoEuro: 0, precoEscudo: 0 };
   Product: any = [];
   productData: any = {};
@@ -32,15 +31,15 @@ export class ProductComponent implements OnInit {
     });
   }
   
-  getProductId() {
-    this.api.getProductsId(this.id).subscribe((data: {}) => {
+  getProductId(id: any) {
+    this.api.getProductsId(id).subscribe((data: {}) => {
       this.productData = data;
     });
   }
 
-  updateProduct() {
+  updateProduct(id: any) {
     if(window.confirm("Are you sure, you want to update?")) {
-      this.api.updateProduct(this.id, this.productData).subscribe(data => {
+      this.api.updateProduct(id, this.productData).subscribe(data => {
         this.router.navigate(['/product'])
       });
     }

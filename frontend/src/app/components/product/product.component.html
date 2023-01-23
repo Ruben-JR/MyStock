@@ -1,5 +1,5 @@
 <div class="d-flex">
-  <button mat-button class="add" data-bs-toggle="modal" data-bs-target="#exampleModal">Add product</button>
+  <button mat-button class="add" data-bs-toggle="modal" data-bs-target="#createModal">Add product</button>
 </div>
 
 <table class="table">
@@ -29,61 +29,116 @@
       <td>{{ products.precoEuro }}</td>
       <td>{{ products.precoEscudo }}</td>
       <td>
-        <button mat-button class="btn-table" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="updateProduct()">Edit</button>
+        <button mat-button class="btn-table" data-bs-toggle="modal" data-bs-target="#updateModal" (click)="getProductId(products.id)">Edit</button>
         <button mat-button class="btn-table" (click)="deleteProduct(Product.id)">Delete</button>
       </td>
     </tbody>
 </table>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Product details</h1>
+        <h1 class="modal-title fs-5" id="createModalLabel">Product details</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="mb-3">
-          <label for="exampleInputFornecedor" class="form-label">Fornecedor</label>
-          <input type="text" class="form-control" [(ngModel)]="productDetails.fornecedor" id="exampleInputEmail1"
+          <label for="createInputFornecedor" class="form-label">Fornecedor</label>
+          <input type="text" class="form-control" [(ngModel)]="productDetails.fornecedor" id="createInputEmail1"
             aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
-          <label for="exampleInputDesignacao" class="form-label">Designação</label>
-          <input type="text" class="form-control" [(ngModel)]="productDetails.designacao" id="exampleInputDesignacao">
+          <label for="createInputDesignacao" class="form-label">Designação</label>
+          <input type="text" class="form-control" [(ngModel)]="productDetails.designacao" id="createInputDesignacao">
         </div>
         <div class="mb-3">
-          <label for="exampleInputFabricante" class="form-label">Fabricante</label>
-          <input type="text" class="form-control" [(ngModel)]="productDetails.fabricante" id="exampleInputFabricante">
+          <label for="createInputFabricante" class="form-label">Fabricante</label>
+          <input type="text" class="form-control" [(ngModel)]="productDetails.fabricante" id="createInputFabricante">
         </div>
         <div class="mb-3">
-          <label for="exampleInputNumRef" class="form-label">N. Ref</label>
-          <input type="text" class="form-control" [(ngModel)]="productDetails.numRef" id="exampleInputNumRef">
+          <label for="createInputNumRef" class="form-label">N. Ref</label>
+          <input type="text" class="form-control" [(ngModel)]="productDetails.numRef" id="createInputNumRef">
         </div>
         <div class="mb-3">
-          <label for="exampleInputLote" class="form-label">Lote</label>
-          <input type="text" class="form-control" [(ngModel)]="productDetails.lote" id="exampleInputLote">
+          <label for="createInputLote" class="form-label">Lote</label>
+          <input type="text" class="form-control" [(ngModel)]="productDetails.lote" id="createInputLote">
         </div>
         <div class="mb-3">
-          <label for="exampleInputTesteEmbal" class="form-label">Testes/embal</label>
-          <input type="text" class="form-control" [(ngModel)]="productDetails.testeEmbal" id="exampleInputTesteEmbal">
+          <label for="createInputTesteEmbal" class="form-label">Testes/embal</label>
+          <input type="text" class="form-control" [(ngModel)]="productDetails.testeEmbal" id="createInputTesteEmbal">
         </div>
         <div class="mb-3">
-          <label for="exampleInputApres" class="form-label">Apres.</label>
-          <input type="text" class="form-control" [(ngModel)]="productDetails.apres" id="exampleInputApres">
+          <label for="createInputApres" class="form-label">Apres.</label>
+          <input type="text" class="form-control" [(ngModel)]="productDetails.apres" id="createInputApres">
         </div>
         <div class="mb-3">
-          <label for="exampleInputPrecoEURO" class="form-label">Preço/uni-EURO.</label>
-          <input type="text" class="form-control" [(ngModel)]="productDetails.precoEuro" id="exampleInputPrecoEURO">
+          <label for="createInputPrecoEURO" class="form-label">Preço/uni-EURO.</label>
+          <input type="text" class="form-control" [(ngModel)]="productDetails.precoEuro" id="createInputPrecoEURO">
         </div>
         <div class="mb-3">
-          <label for="exampleInputPrecoECV" class="form-label">Preço/uni-ECV.</label>
-          <input type="text" class="form-control" [(ngModel)]="productDetails.precoEscudo" id="exampleInputPrecoECV">
+          <label for="createInputPrecoECV" class="form-label">Preço/uni-ECV.</label>
+          <input type="text" class="form-control" [(ngModel)]="productDetails.precoEscudo" id="createInputPrecoECV">
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" (click)="createProduct()">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="updateModalLabel">Product details</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="updateInputFornecedor" class="form-label">Fornecedor</label>
+          <input type="text" class="form-control" [(ngModel)]="productData.fornecedor" id="updateInputEmail1"
+            aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+          <label for="updateInputDesignacao" class="form-label">Designação</label>
+          <input type="text" class="form-control" [(ngModel)]="productData.designacao" id="updateInputDesignacao">
+        </div>
+        <div class="mb-3">
+          <label for="updateInputFabricante" class="form-label">Fabricante</label>
+          <input type="text" class="form-control" [(ngModel)]="productData.fabricante" id="updateInputFabricante">
+        </div>
+        <div class="mb-3">
+          <label for="updateInputNumRef" class="form-label">N. Ref</label>
+          <input type="text" class="form-control" [(ngModel)]="productData.numRef" id="updateInputNumRef">
+        </div>
+        <div class="mb-3">
+          <label for="updateInputLote" class="form-label">Lote</label>
+          <input type="text" class="form-control" [(ngModel)]="productData.lote" id="updateInputLote">
+        </div>
+        <div class="mb-3">
+          <label for="updateInputTesteEmbal" class="form-label">Testes/embal</label>
+          <input type="text" class="form-control" [(ngModel)]="productData.testeEmbal" id="updateInputTesteEmbal">
+        </div>
+        <div class="mb-3">
+          <label for="updateInputApres" class="form-label">Apres.</label>
+          <input type="text" class="form-control" [(ngModel)]="productData.apres" id="updateInputApres">
+        </div>
+        <div class="mb-3">
+          <label for="updateInputPrecoEURO" class="form-label">Preço/uni-EURO.</label>
+          <input type="text" class="form-control" [(ngModel)]="productData.precoEuro" id="updateInputPrecoEURO">
+        </div>
+        <div class="mb-3">
+          <label for="updateInputPrecoECV" class="form-label">Preço/uni-ECV.</label>
+          <input type="text" class="form-control" [(ngModel)]="productData.precoEscudo" id="updateInputPrecoECV">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="updateProduct(productData.id)">Update</button>
       </div>
     </div>
   </div>
