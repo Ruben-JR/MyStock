@@ -14,9 +14,4 @@ export const navbarData = [
         icon: 'fal fa-chart-bar',
         label: 'Statistics'
     },
-    {
-        routerLink: 'settings',
-        icon: 'fal fa-cog',
-        label: 'Settings'
-    }
 ];
