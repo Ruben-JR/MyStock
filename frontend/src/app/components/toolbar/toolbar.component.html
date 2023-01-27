@@ -2,9 +2,24 @@
     <div class="search">
         <input type="text" placeholder="search">
         <button>
-            <i class="fal fa-times close-icon"></i>
+            <mat-icon>search</mat-icon>
         </button>
     </div>
 
-    <div class="settings"></div>
+    <div class="settings">
+        <button mat-icon-button [matMenuTriggerFor]="language">
+            <mat-icon>language</mat-icon>
+        </button>
+        <mat-menu #language="matMenu">
+            <button mat-menu-item>English</button>
+            <button mat-menu-item>Portuguese</button>
+        </mat-menu>
+
+        <button mat-icon-button>
+            <mat-icon>brightness_medium</mat-icon>
+        </button>
+        <button mat-icon-button>
+            <mat-icon>person</mat-icon>
+        </button>
+    </div>
 </div>
