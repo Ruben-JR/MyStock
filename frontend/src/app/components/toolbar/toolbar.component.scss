@@ -1,0 +1,41 @@
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+
+    .search {
+        width: 30%;
+        max-width: 300px;
+        background: rgba(77, 70, 70, 0.2);
+        display: flex;
+        align-items: center;
+        border-radius: 20px;
+        padding: 5px 20px;
+
+        input {
+            background: transparent;
+            flex: 1;
+            border: 0;
+            outline: none;
+            padding: 0px 5px;
+            font-size: 15px;
+            color: #263238;
+        }
+
+        button {
+            width: 25px;
+            border: 0;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+
+            mat-icon {
+                padding: 1px 1px 1px 1px;
+            }
+        }
+    }
+
+    ::placeholder {
+        color: #263238;
+    }
+}
