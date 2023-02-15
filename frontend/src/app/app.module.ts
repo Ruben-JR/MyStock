@@ -17,6 +17,9 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ProductComponent } from './components/product/product.component';
 import { HomeComponent } from './components/home/home.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { RegisterComponent } from './components/account/register/register.component';
+import { LoginComponent } from './components/account/login/login.component';
+import { ProfileComponent } from './components/account/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     ProductComponent,
     HomeComponent,
     ToolbarComponent,
+    RegisterComponent,
+    LoginComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
