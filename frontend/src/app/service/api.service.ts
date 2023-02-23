@@ -3,14 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product } from './interfaces';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  apiUrl = 'http://localhost:3000';
-
   constructor(private http: HttpClient) { }
+  apiUrl = environment.ApiUrl;
 
   httpOptions = {
     headers: new HttpHeaders({
