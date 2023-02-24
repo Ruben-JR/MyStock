@@ -8,8 +8,9 @@ import { Observable } from "rxjs";
 })
 
 export class AuthenticationClient {
+    apiUrl = environment.ApiUrl;
+
     constructor(private http: HttpClient) { }
-    apiUrl = environment.ApiUrl
 
     public login(username: string, password: string): Observable<string> {
         return this.http.post(this.apiUrl + '/user/login',
