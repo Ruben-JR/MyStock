@@ -1,16 +1,23 @@
-<div class="login">
-    <mat-form-field appearance="fill">
-        <mat-label>Enter your email</mat-label>
-        <input matInput placeholder="pat@example.com" [formControl]="email" required>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-        <mat-label>Enter your password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-    </mat-form-field>
+<div class="wrapper">
+    <div class="form-box login">
+        <h2>Login</h2>
+        <form [formGroup]="loginForm">
+            <div class="input-box">
+                <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                <input type="email" formControlName="email" required>
+                <label>Email</label>
+            </div>
+            <div class="input-box">
+                <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                <input type="password" formControlName="password" required>
+                <label>Password</label>
+            </div>
+            <div class="remember-forgot">
+                <label><input type="checkbox"/>Remenber me</label>
+                <a routerLink="#">Forgot password?</a>
+            </div>
+        </form>
+        <button class="btn" color="primary" (click)="onSubmit()">Login</button>
+        <button class="btn-login" routerLink="/register" routerLinkActive="active">Don't have an account? Register here.</button>
+    </div>
 </div>

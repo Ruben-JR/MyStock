@@ -8,6 +8,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { IonicModule } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -45,7 +46,8 @@ import { TokenInterceptor } from './components/account/clients/token.interceptor
     HttpClientModule,
     FormsModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    IonicModule
   ],
   providers: [
     ApiService,
