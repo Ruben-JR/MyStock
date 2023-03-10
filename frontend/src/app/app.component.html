@@ -1,7 +1,8 @@
 <div *ngIf="router.url !== '/login' && router.url !== '/register'">
+    <app-toolbar></app-toolbar>
     <app-sidenav (onToggleSideNav)="onToggleSideNav($event)"></app-sidenav>
-    <app-body>
-        [collapsed]="isSideNavCollapsed"
-        [screenWidth]="screenWidth"
-    </app-body>
 </div>
+<app-body>
+    [collapsed]="isSideNavCollapsed"
+    [screenWidth]="screenWidth"
+</app-body>

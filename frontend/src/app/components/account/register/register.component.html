@@ -1,27 +1,27 @@
-<div class="register">
-    <form [formGroup]="registerForm">
-        <mat-form-field appearance="fill">
-            <mat-label>Name</mat-label>
-            <input matInput placeholder="Ruben de Pina" formControlName="username">
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Enter your email</mat-label>
-            <input matInput placeholder="pat@example.com" formControlName="email" required>
-            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Enter your password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
-            <button mat-icon-button matSuffix (click)="hide = !hide"
-                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-        </mat-form-field>
-    </form>
-    <button mat-button (click)="onSubmit()">Register</button>
-    <button mat-button routerLink="/login" routerLinkActive="active">
-        Already have an account? Login here.
-    </button>
+<div class="wrapper">
+    <div class="form-box register">
+        <h2>Register</h2>
+        <form [formGroup]="registerForm">
+            <div class="input-box">
+                <span class="icon"><ion-icon name="person"></ion-icon></span>
+                <input type="text" formControlName="username" required>
+                <label>User name</label>
+            </div>
+            <div class="input-box">
+                <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                <input type="email" formControlName="email" required>
+                <label>Email</label>
+            </div>
+            <div class="input-box">
+                <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                <input type="password" formControlName="password" required>
+                <label>Password</label>
+            </div>
+            <div class="agree">
+                <label><input type="checkbox"/>I agree to the terms & conditions</label>
+            </div> 
+        </form>
+        <button class="btn" color="primary" (click)="onSubmit()">Register</button>
+        <p class="btn-register">Already have an account? <a routerLink="/login" routerLinkActive="active">Login.</a></p>
+    </div>
 </div>
