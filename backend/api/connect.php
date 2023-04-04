@@ -1,14 +1,10 @@
 <?php
-    $envPath = "../.env";
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ );
-    $dotenv->load();
-
-    $db_url = $_ENV['_db_url'];
-    $db_user = "";
+    $host = "127.0.0.1:3000";
+    $db_user = "mylab";
     $db_password = "";
-    $db_name = "";
+    $db_name = "mystock";
 
-    $con = mysqli_connect($db_url, $db_user, $db_password, $db_name);
+    $con = mysqli_connect($db_host, $db_user, $db_password, $db_name);
     if (!$con) {
         echo "Connction failed" .mysqli_connect_error();
     }
