@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router'
 
 interface SideNavToggle {
   screenWidth: number;
@@ -11,6 +12,8 @@ interface SideNavToggle {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  constructor(public router: Router) { }
+
   title = 'frontend';
 
   isSideNavCollapsed = false;

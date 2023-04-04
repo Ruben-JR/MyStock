@@ -5,9 +5,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { IonicModule } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,10 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ProductComponent } from './components/product/product.component';
 import { HomeComponent } from './components/home/home.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { RegisterComponent } from './components/account/register/register.component';
+import { LoginComponent } from './components/account/login/login.component';
+import { ProfileComponent } from './components/account/profile/profile.component';
+import { TokenInterceptor } from './components/account/clients/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -26,6 +31,9 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     ProductComponent,
     HomeComponent,
     ToolbarComponent,
+    RegisterComponent,
+    LoginComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,10 +46,16 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     HttpClientModule,
     FormsModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    IonicModule
   ],
   providers: [
     ApiService,
+    {
+      provide: HTTP_INTERCEPTORS, 
+      useClass: TokenInterceptor, 
+      multi: true
+    }
   ],
   bootstrap: [
     AppComponent,
