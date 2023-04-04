@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from 'src/app/service/api.service';
+import { WeatherClient } from '../account/clients/weather.client';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-toolbar',
@@ -7,7 +9,8 @@ import { ApiService } from 'src/app/service/api.service';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent {
-  constructor(private api: ApiService) {}
+  public weather: Observable<any> = this.weatherClient.getWeatcherData();
+  constructor(private api: ApiService, private weatherClient: WeatherClient) {}
 
   logout(): void {
     this.api.logout();
