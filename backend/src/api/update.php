@@ -12,7 +12,7 @@
         }
 
         // sanitize the datas posted
-        $fornecedor = mysqli_real_escape_string($con, trim($request->data->model));
+        $fornecedor = mysqli_real_escape_string($con, trim($request->data->fornecedor));
         $designacao = mysqli_real_escape_string($con, trim($request->data->designacao));
         $fabricante = mysqli_real_escape_string($con, trim($request->data->fabricante));
         $numRef = mysqli_real_escape_string($con, (int)$request->data->numRef);
