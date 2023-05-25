@@ -8,7 +8,7 @@ RUN apk add zlib-dev git zip \
 RUN curl -sS https://getcomposer.org/installer | php \
         &amp;&amp; mv composer.phar /usr/local/bin/ \
         &amp;&amp; ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
-COPY . /MyLab/
+COPY . /var/www/html
 WORKDIR /app
 RUN composer install --prefer-source --no-interaction
 ENV PATH="~/.composer/vendor/bin:./vendor/bin:${PATH}"
