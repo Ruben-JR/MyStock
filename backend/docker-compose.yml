@@ -1,0 +1,9 @@
+version: '3' #docker version
+services:
+  myStock:
+    image: php
+    volumes:
+      - "./src/api:/var/www/html" # sync project dir with container web dir
+    ports:
+      - 80:80
+      - 443:443 # for future ssl traffic
