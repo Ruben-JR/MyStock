@@ -7,6 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import { MatMenuModule } from '@angular/material/menu';
 import { IonicModule } from '@ionic/angular';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,7 +31,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     MatTableModule,
     HttpClientModule,
     MatMenuModule,
-    IonicModule
+    IonicModule,
+    MatIconModule
   ],
   providers: [
   ],
