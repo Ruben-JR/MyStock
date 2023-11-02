@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/service/api.service';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +12,7 @@ export class RegisterComponent {
   email = new FormControl('', [Validators.required, Validators.email]);
   public registerForm!: FormGroup;
 
-  constructor(private api: ApiService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
     this.registerForm = new FormGroup({
@@ -24,7 +24,7 @@ export class RegisterComponent {
   }
 
   public onSubmit() {
-    this.api.register(
+    this.authService.register(
       this.registerForm.get('username')!.value,
       this.registerForm.get('email')!.value,
       this.registerForm.get('password')!.value,

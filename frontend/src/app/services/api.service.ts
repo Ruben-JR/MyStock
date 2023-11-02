@@ -4,7 +4,6 @@ import { Product } from './interfaces';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { AuthenticationClient } from '../components/account/clients/authentication.client';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -14,41 +13,13 @@ export class ApiService {
   apiUrl = environment.ApiUrl;
   private tokenKey = 'token';
 
-  constructor(private http: HttpClient, private authClient: AuthenticationClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   httpOptions = {
     headers: new HttpHeaders({
       'content-type': 'application/json',
     }),
   };
-
-  public login(username: string, password: string): void {
-    this.authClient.login(username, password).subscribe((token) => {
-      localStorage.setItem(this.tokenKey, token);
-      this.router.navigate(['/']);
-    });
-  }
-
-  public register(username: string, email: string, password: string, phone: number): void {
-    this.authClient.register(username, email, password, phone).subscribe((token) => {
-      localStorage.setItem(this.tokenKey, token);
-      this.router.navigate(['/']);
-    });
-  }
-
-  public logout() {
-    localStorage.removeItem(this.tokenKey);
-    this.router.navigate(['/login']);
-  }
-
-  public isLoggedIn(): boolean {
-    let token = localStorage.getItem(this.tokenKey);
-    return token != null && token.length > 0;
-  }
-
-  public getToken(): string | null {
-    return this.isLoggedIn() ? localStorage.getItem(this.tokenKey) : null;
-  }
 
   getProducts(): Observable<Product> {
     return this.http
@@ -89,6 +60,7 @@ export class ApiService {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
+    
     window.alert(errorMessage);
     return throwError(() => {
       return errorMessage;
