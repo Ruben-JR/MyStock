@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './components/account/clients/auth.guard';
-import { LoginComponent } from './components/account/login/login.component';
-import { RegisterComponent } from './components/account/register/register.component';
-import { HomeComponent } from './components/home/home.component';
-import { ProductComponent } from './components/product/product.component';
+import { AuthGuard } from 'src/app/core/guards/auth.guard';
+import { LoginComponent } from 'src/app/pages/account/login/login.component';
+import { RegisterComponent } from 'src/app/pages/account/register/register.component';
+import { HomeComponent } from 'src/app/pages/home/home.component';
+import { ProductComponent } from 'src/app/pages/product/product.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full',  },
