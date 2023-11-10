@@ -23,7 +23,7 @@ export class AuthenticationClient {
     }
 
     public register(username: string, email: string, password: string, phone: number): Observable<string> {
-        return this.http.post(this.apiUrl + '/user/register', 
+        return this.http.post(this.apiUrl + '/user/register',
         {
             username: username,
             email: email,

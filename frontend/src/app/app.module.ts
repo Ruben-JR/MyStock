@@ -52,8 +52,8 @@ import { TokenInterceptor } from './components/account/clients/token.interceptor
   providers: [
     ApiService,
     {
-      provide: HTTP_INTERCEPTORS, 
-      useClass: TokenInterceptor, 
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
       multi: true
     }
   ],

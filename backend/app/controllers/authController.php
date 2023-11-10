@@ -76,7 +76,7 @@
                 if(trim($request->data->phone) === '' || trim($request->data->email) === '' || trim($request->data->password) === '' || (int)$request->data->phone < 0) {
                     return http_response_code(400);
                 }
-                
+
                 $username = mysqli_real_escape_string($con, trim($request->data->username));
                 $email = mysqli_real_escape_string($con, trim($request->data->email));
                 $password = mysqli_real_escape_string($con, trim($request->data->password));
@@ -99,7 +99,7 @@
             if(!$id){
                 return http_response_code(400);
             }
-        
+
             $sql = "DELETE FROM `utilizador` WHERE `id` = `{$id}` LIMIT 1";
             if(mysqli_query($CON, $sql)) {
                 http_response_code(204);
@@ -108,5 +108,5 @@
                 return http_response_code(422);
             }
         }
-    }    
+    }
 ?>

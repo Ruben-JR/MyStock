@@ -1,4 +1,4 @@
-<h2>MyStock</h2> 
+<h2>MyStock</h2>
 <div style="display: inline_block">
     <img align="center" alt="Home-Page" height="200" width="400" src="">
     <img align="center" alt="Product-Page" height="200" width="400" src="">
@@ -9,11 +9,11 @@
 <hr>
 
 <h3>About the project</h3>
-<p>This project was created to study the angular framework, creating components, services and routes, this was done with the help of some youtube tutorials for better practice and learning. The design was inspired by designs found on pinterest and customize the design to fit your needs. </p>   
+<p>This project was created to study the angular framework, creating components, services and routes, this was done with the help of some youtube tutorials for better practice and learning. The design was inspired by designs found on pinterest and customize the design to fit your needs. </p>
 
 <hr>
 
-<h3>Objective</h3> 
+<h3>Objective</h3>
 <p>The goal of this project is to create a stock software of products for a laboratory, this has as an objective to practice my knowledge in this technology and become a better developer every day.</p>
 
 <hr>
@@ -52,9 +52,9 @@ npm install
 ng serve --open
 ```
 
-<h3>Author</h3> 
+<h3>Author</h3>
 <h4>Ruben de Pina</h4>
 <p><div>
     <a href = "mailto:rubenpina758@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
-   <a href="https://www.linkedin.com/in/ruben-pina-3851b4235/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
+   <a href="https://www.linkedin.com/in/ruben-pina-3851b4235/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
 </div></p>

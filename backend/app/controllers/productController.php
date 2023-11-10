@@ -1,5 +1,5 @@
 <!-- handling CRUD operations related to specific entities  -->
-<?php 
+<?php
     namespace Product\Controllers;
 
     use \App\Config\DbConnect;
@@ -24,7 +24,7 @@
                     // client error response
                     return http_response_code(400);
                 }
-        
+
                 // sanitize the datas posted
                 $fornecedor = mysqli_real_escape_string($con, trim($request->data->fornecedor));
                 $designacao = mysqli_real_escape_string($con, trim($request->data->designacao));
@@ -35,7 +35,7 @@
                 $apres = mysqli_real_escape_string($con, trim($request->data->apres));
                 $precoEuro = mysqli_real_escape_string($con, (int)$request->data->precoEuro);
                 $precoEscudo = mysqli_real_escape_string($con, (int)$request->data->precoEscudo);
-        
+
                 $sql = "INSERT INTO `products`(`fornecedor`, `designacao`, `fabricante`, `numRef`, `lote`, `testEmbal`, `apres`, `precoEuro`, `precoescudo`) VALUES ( '{$fornecedor}', '{$designacao}', '{$fabricante}', '{$numRef}', '{$lote}', '{$testeEmbal}', '{$apres}', '{$precoEuro}', '{$precoEscudo}')";
                 if(mysqli_query($con, $sql)) {
                     $products = [
@@ -95,7 +95,7 @@
                     // client error response
                     return http_response_code(400);
                 }
-        
+
                 // sanitize the datas posted
                 $fornecedor = mysqli_real_escape_string($con, trim($request->data->fornecedor));
                 $designacao = mysqli_real_escape_string($con, trim($request->data->designacao));
@@ -105,7 +105,7 @@
                 $apres = mysqli_real_escape_string($con, trim($request->data->apres));
                 $precoEuro = mysqli_real_escape_string($con, (int)$request->data->precoEuro);
                 $precoEscudo = mysqli_real_escape_string($con, (int)$request->data->precoEscudo);
-        
+
                 $sql = "UPDATE `products` SET `fornecedor` = `$fornecedor`, `designacao` = `$designacao`, `fabricante` = `$fabricante`, `numRef` = `$numRef`, `lote` = `$lote`, `testEmbal` = `$testEmbal`, `apres` = `$apres`, `precoEuro` = `$precoEuro`, `precoEscudo ` = `$precoEscudo `";
                 if(mysqli_query($con, $sql)) {
                     http_response_code(204);
@@ -123,7 +123,7 @@
             if(!$id) {
                 return http_response_code(400);
             }
-            
+
             $sql = "DELETE FROM `products` WHERE `id` = '{$id}' LIMIT 1";
             if(mysqli_query($con, $sql)) {
                 http_response_code(204);

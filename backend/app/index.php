@@ -5,7 +5,7 @@
     require_once __DIR__ . '/../vendor/autoload.php';
     // Bootstrap your application, including any configuration settings
     require_once __DIR__ . '/bootstrap.php';
-    
+
     use App\Middleware\AuthenticationMiddleware;
 
      // Instantiate your middleware
