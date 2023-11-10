@@ -8,7 +8,7 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
-  @Input() 
+  @Input()
   productDetails = { fornecedor: '', designacao: '', fabricante: '', numRef: 0, lote: '', testeEmbal: '', apres: '', precoEuro: 0, precoEscudo: 0 };
   Product: any = [];
   productData: any = {};
@@ -18,7 +18,7 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     // this.getProduct();
   }
-  
+
   createProduct() {
     this.api.createProduct(this.productDetails).subscribe((data: {}) => {
       this.router.navigate(['/product']);
@@ -30,7 +30,7 @@ export class ProductComponent implements OnInit {
       this.Product = data;
     });
   }
-  
+
   getProductId(id: any) {
     this.api.getProductsId(id).subscribe((data: {}) => {
       this.productData = data;

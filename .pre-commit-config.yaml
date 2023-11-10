@@ -3,12 +3,19 @@ repos:
     rev: v4.4.0
     hooks:
     -   id: check-yaml
+    -   id: check-json
     -   id: end-of-file-fixer
     -   id: trailing-whitespace
     -   id: check-case-conflict
     -   id: check-merge-conflict
     -   id: check-executables-have-shebangs
--   repo: https://github.com/psf/black
-    rev: 22.10.0
-    hooks:
-    -   id: black
+# -   repo: https://github.com/digitalpulp/pre-commit-php
+#     rev: 1.4.0
+#     hooks:
+#     -   id: php-lint-all
+#     -   id: php-lint
+#     -   id: php-unit
+#     -   id: php-cs
+#     -   id: php-cbf
+#     -   id: php-cs-fixer
+#     -   id: php-stan

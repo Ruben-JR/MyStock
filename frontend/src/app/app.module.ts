@@ -35,6 +35,12 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     MatIconModule
   ],
   providers: [
+    ApiService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [
     AppComponent,
