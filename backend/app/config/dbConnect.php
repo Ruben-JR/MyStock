@@ -1,6 +1,5 @@
 <?php
-
-use Dotenv\Dotenv;
+    use Dotenv\Dotenv;
     // Include composer autoload
     require __DIR__ . '/../vendor/autoload.php';
 
