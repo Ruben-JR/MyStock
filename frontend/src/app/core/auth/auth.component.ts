@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { environment } from "../../../../environments/environment";
+import { environment } from "src/environments/environment";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
     providedIn: 'root',
 })
 
-export class AuthenticationClient {
+export class Auth {
     apiUrl = environment.ApiUrl;
 
     constructor(private http: HttpClient) { }

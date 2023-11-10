@@ -1,11 +1,11 @@
-import { ApiService } from "src/app/service/api.service";
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
-import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { Injectable } from "@angular/core";
+import { AuthService } from "src/app/core/services/auth.service";
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-    constructor(public authService: ApiService) {}
+    constructor(public authService: AuthService) {}
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if(this.authService.isLoggedIn()) {
             let newRequest = req.clone({
