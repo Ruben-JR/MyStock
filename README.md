@@ -27,31 +27,6 @@
 
 <hr>
 
-<h3>Getting started</h3>
-<h4>Pre-requisites</h4>
-<p>To run this project in the development mode, you'll need to have a basic environment to run a angular app, that you can find <a  href="https://angular.io/">here.</a></p>
-
-<h4>Installing</h4>
-<p>Cloning the repository</p>
-
-```
-git clone https://github.com/Ruben-JR/MyStock
-
-cd MyStock/frontend
-```
-
-<h4>Installing dependencies</h4>
-
-```
-npm install
-```
-
-<h4>Running</h4>
-
-```
-ng serve --open
-```
-
 <h3>Author</h3>
 <h4>Ruben de Pina</h4>
 <p><div>
