@@ -1,0 +1,37 @@
+name: MyStock continuous integrations
+
+on:
+  push:
+    branches:
+      - master
+      - staging
+    pull_request:
+      branches:
+        - master
+        - staging
+    workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get composer
+      - uses: baschny/php-composer-action@v1
+        with:
+          composer_version: ${{ env.COMPOSER_VERSION }}
+          command: get_config
+
+      - name: Cache composer downloads
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer_config.outputs.composer_cache_dir }}
+          key: composer-v${{ steps.composer_config.outputs.composer_major_version }}
+
+      - name: Run composer install
+        uses: baschny/php-composer-action@v1
+        with:
+          composer_version: ${{ env.COMPOSER_VERSION }}
+          command: install
