@@ -9,14 +9,15 @@ on:
       branches:
         - master
         - staging
-    # workflow_dispatch:
+        - MYL/*
+    workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-22.04
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
       - name: Get composer
       - uses: baschny/php-composer-action@v1
