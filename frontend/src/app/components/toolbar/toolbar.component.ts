@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ApiService } from 'src/app/service/api.service';
-import { WeatherClient } from '../account/clients/weather.client';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { WeatherClient } from 'src/app/core/auth/weather.client';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,9 +10,9 @@ import { Observable } from 'rxjs';
 })
 export class ToolbarComponent {
   public weather: Observable<any> = this.weatherClient.getWeatcherData();
-  constructor(private api: ApiService, private weatherClient: WeatherClient) {}
+  constructor(private authService: AuthService, private weatherClient: WeatherClient) {}
 
   logout(): void {
-    this.api.logout();
+    this.authService.logout();
   }
 }
