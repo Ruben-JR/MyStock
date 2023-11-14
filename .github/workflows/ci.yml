@@ -15,8 +15,8 @@ on:
 
 jobs:
   build:
+    name: Build MyStock
     runs-on: ubuntu-22.04
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -25,4 +25,8 @@ jobs:
         uses: nanasess/setup-php@v4
         with:
           php-version: '8.2'
-        # run: php ./backend/app/index.php
+
+      - name: Install composer
+        run: |
+          sudo apt update
+          sudo apt upgrade
