@@ -25,4 +25,4 @@ jobs:
         uses: nanasess/setup-php@v4
         with:
           php-version: '8.2'
-        run: php ./backend/app/index.php
+        # run: php ./backend/app/index.php
