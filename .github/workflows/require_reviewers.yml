@@ -5,6 +5,12 @@ on:
     branches:
       - master
       - staging
+      - MYL/*
+  pull_request:
+    branches:
+      - master
+      - staging
+      - MYL/*
 
 jobs:
   require_user_approval:
