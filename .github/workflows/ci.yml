@@ -52,10 +52,7 @@ jobs:
             ${{ runner.os }}-php-
 
       - name: Run composer install
-        uses: baschny/php-composer-action@v1
-        with:
-          composer_version: ${{ env.COMPOSER_VERSION }}
-          command: install
+        run: composer install --prefer-dist --no-progress
 
   automated_test:
     name: Introduce automated tests
