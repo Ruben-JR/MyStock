@@ -42,18 +42,17 @@ jobs:
           sudo composer self-update
           composer -v
 
-      - name: Cache Composer packages
-        id: composer-cache
-        uses: actions/cache@v3
+      - name: Run composer install
+        run: composer install --prefer-dist --no-progress
+        working-directory: backend/app
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v2
         with:
           path: backend/app/vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('backend/app/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
-
-      - name: Install composer
-        run: composer install --prefer-dist --no-progress
-        working-directory: backend/app
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
