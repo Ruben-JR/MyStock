@@ -42,14 +42,14 @@ jobs:
           sudo composer self-update
           composer -v
 
-      # - name: Cache Composer packages
-      #   id: composer-cache
-      #   uses: actions/cache@v3
-      #   with:
-      #     path: backend/app/vendor
-      #     key: ${{ runner.os }}-composer-${{ hashFiles('backend/app/composer.lock') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-composer-
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v3
+        with:
+          path: backend/app/vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('backend/app/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
 
       # - name: Install composer
       #   run: composer install --prefer-dist --no-progress
