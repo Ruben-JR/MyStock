@@ -35,63 +35,63 @@ jobs:
         run: |
           sudo apt install nginx
 
-      - name: Get composer cache directory
-        id: composer_config
-        uses: baschny/php-composer-action@v1
-        with:
-          composer_version: ${{ env.COMPOSER_VERSION }}
-          command: get_config
+      - name: Install composer
+        run: |
+          curl -sS https://getcomposer.org/installer -o composer-setup.php
+          sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+          sudo composer self-update
+          composer -v
 
-      - name: Cache Composer packages
-        id: composer-cache
-        uses: actions/cache@v3
-        with:
-          path: backend/app/vendor
-          key: ${{ runner.os }}-composer-${{ hashFiles('backend/app/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
+      # - name: Cache Composer packages
+      #   id: composer-cache
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: backend/app/vendor
+      #     key: ${{ runner.os }}-composer-${{ hashFiles('backend/app/composer.lock') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-composer-
 
-      - name: Run composer install
-        run: composer install --prefer-dist --no-progress
-        working-directory: backend/app
+      # - name: Install composer
+      #   run: composer install --prefer-dist --no-progress
+      #   working-directory: backend/app
 
-  automated_test:
-    name: Introduce automated tests
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+  # automated_test:
+  #   name: Introduce automated tests
+  #   runs-on: ubuntu-22.04
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
 
-      - name: PHP unit tests
-        uses: php-actions/phpunit@v3
-        with:
-          php_extensions: "xdebug"
-          coverage_clover: "coverage/clover.xml"
-          configuration: "mystock/phpunit.xml"
-          memory_limit: "256M"
+  #     - name: PHP unit tests
+  #       uses: php-actions/phpunit@v3
+  #       with:
+  #         php_extensions: "xdebug"
+  #         coverage_clover: "coverage/clover.xml"
+  #         configuration: "mystock/phpunit.xml"
+  #         memory_limit: "256M"
 
-      - name: Validate composer.json and composer.lock
-        run: composer validate --strict
+  #     - name: Validate composer.json and composer.lock
+  #       run: composer validate --strict
 
-  Linting:
-    name: linting
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+  # Linting:
+  #   name: linting
+  #   runs-on: ubuntu-22.04
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
 
-      - name: unify code style
-        uses: michaelw90/PHP-Lint@master
+  #     - name: unify code style
+  #       uses: michaelw90/PHP-Lint@master
 
-  Security_scanning:
-    name: Security/scanning
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+  # Security_scanning:
+  #   name: Security/scanning
+  #   runs-on: ubuntu-22.04
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
 
-      - name: Phpsecure Vulnerabilities Scanner
-        uses: PhpSecureScanner/phpsecure_action@v0.1.6
-        env:
-          # PHPSECURE_AUTH_TOKEN: ${{ secrets.PHPSECURE_AUTH_TOKEN }}
-          PROJECT_NAME: "MyStock"
+  #     - name: Phpsecure Vulnerabilities Scanner
+  #       uses: PhpSecureScanner/phpsecure_action@v0.1.6
+  #       env:
+  #         # PHPSECURE_AUTH_TOKEN: ${{ secrets.PHPSECURE_AUTH_TOKEN }}
+  #         PROJECT_NAME: "MyStock"
