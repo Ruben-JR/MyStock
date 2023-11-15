@@ -51,9 +51,21 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-composer-
 
-      # - name: Install composer
-      #   run: composer install --prefer-dist --no-progress
-      #   working-directory: backend/app
+      - name: Install composer
+        run: composer install --prefer-dist --no-progress
+        working-directory: backend/app
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '14'
+
+      - name: Setup Angular
+        working-directory: frontend
+        run: |
+          npm install
+          npm run build
+          npm run test
 
   # automated_test:
   #   name: Introduce automated tests
