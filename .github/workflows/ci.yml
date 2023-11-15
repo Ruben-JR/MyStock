@@ -52,7 +52,9 @@ jobs:
             ${{ runner.os }}-php-
 
       - name: Run composer install
-        run: composer install --prefer-dist --no-progress
+        run: |
+          cd backend/app/vendor
+          composer install --prefer-dist --no-progress
 
   automated_test:
     name: Introduce automated tests
