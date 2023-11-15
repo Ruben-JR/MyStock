@@ -15,7 +15,7 @@ on:
 jobs:
   require_user_approval:
     name: Require user approval
-    runs_on: ubuntu-22.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Request review based on files changes and/or groups the author belongs to
         uses: BrianCArnold/require-user-approval@v0.0.1
