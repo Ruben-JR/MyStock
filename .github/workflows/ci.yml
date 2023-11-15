@@ -92,9 +92,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Security
-        uses: action to use
-
       - name: Phpsecure Vulnerabilities Scanner
         uses: PhpSecureScanner/phpsecure_action@v0.1.6
         env:
