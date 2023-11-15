@@ -17,16 +17,86 @@ jobs:
   build:
     name: Build MyStock
     runs-on: ubuntu-22.04
+    env:
+      COMPOSER_VERSION: 1
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install php
-        uses: nanasess/setup-php@v4
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
+          ini-values: phar.readonly=0
+          tools: composer
+          coverage: none
 
-      - name: Install composer
+      - name: Install Nginx
         run: |
-          sudo apt update
-          sudo apt upgrade
+          sudo apt install nginx
+
+      - name: Get composer cache directory
+        id: composer_config
+        uses: baschny/php-composer-action@v1
+        with:
+          composer_version: ${{ env.COMPOSER_VERSION }}
+          command: get_config
+
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Run composer install
+        uses: baschny/php-composer-action@v1
+        with:
+          composer_version: ${{ env.COMPOSER_VERSION }}
+          command: install
+
+  automated_test:
+    name: Introduce automated tests
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: PHP unit tests
+        uses: php-actions/phpunit@v3
+        with:
+          php_extensions: "xdebug"
+          coverage_clover: "coverage/clover.xml"
+          configuration: "mystock/phpunit.xml"
+          memory_limit: "256M"
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
+
+  Linting:
+    name: linting
+    runs-on: sistema operativo
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: unify code style
+        uses: michaelw90/PHP-Lint@master
+
+  Security_scanning:
+    name: Security/scanning
+    runs-on: sistema operativo
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Security
+        uses: action to use
+
+      - name: Phpsecure Vulnerabilities Scanner
+        uses: PhpSecureScanner/phpsecure_action@v0.1.6
+        env:
+          # PHPSECURE_AUTH_TOKEN: ${{ secrets.PHPSECURE_AUTH_TOKEN }}
+          PROJECT_NAME: "MyStock"
