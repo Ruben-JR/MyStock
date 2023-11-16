@@ -45,14 +45,14 @@ jobs:
       - name: Cache Composer dependencies
         uses: actions/cache@v2
         with:
-          path: backend/app/vendor
-          key: ${{ runner.os }}-composer-${{ hashFiles('backend/app/composer.lock') }}
+          path: ./backend/app/vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('./backend/app/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
               
       - name: Run composer install
         run: composer install --prefer-dist --no-progress
-        working-directory: backend/app
+        working-directory: ./backend/app
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
