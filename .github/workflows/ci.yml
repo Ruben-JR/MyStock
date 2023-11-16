@@ -65,25 +65,25 @@ jobs:
           npm install
           npm run build
           npm run test
-
           
-  # automated_test:
-  #   name: Introduce automated tests
-  #   runs-on: ubuntu-22.04
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v3
+  automated_test:
+    name: Introduce automated tests
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-  #     - name: PHP unit tests
-  #       uses: php-actions/phpunit@v3
-  #       with:
-  #         php_extensions: "xdebug"
-  #         coverage_clover: "coverage/clover.xml"
-  #         configuration: "mystock/phpunit.xml"
-  #         memory_limit: "256M"
+      - name: PHP unit tests
+        uses: php-actions/phpunit@v3
+        with:
+          php_extensions: "xdebug"
+          coverage_clover: "coverage/clover.xml"
+          configuration: "mystock/phpunit.xml"
+          memory_limit: "256M"
 
-  #     - name: Validate composer.json and composer.lock
-  #       run: composer validate --strict
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
+        working-directory: ./backend
 
   # Linting:
   #   name: linting
