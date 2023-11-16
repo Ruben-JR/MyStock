@@ -77,13 +77,12 @@ jobs:
         uses: php-actions/phpunit@v3
         with:
           php_extensions: "xdebug"
-          coverage_clover: "coverage/clover.xml"
-          configuration: "mystock/phpunit.xml"
+          configuration: "./backend/tests/phpunit.php"
           memory_limit: "256M"
 
       - name: Validate composer.json and composer.lock
-        run: composer validate --strict
         working-directory: ./backend
+        run: composer validate --strict
 
   # Linting:
   #   name: linting
