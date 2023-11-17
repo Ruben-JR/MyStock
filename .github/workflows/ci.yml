@@ -45,14 +45,14 @@ jobs:
       - name: Cache Composer dependencies
         uses: actions/cache@v2
         with:
-          path: ./backend
-          key: ${{ runner.os }}-composer-${{ hashFiles('./backend/composer.lock') }}
+          path: ./backend/app
+          key: ${{ runner.os }}-composer-${{ hashFiles('./backend/app/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
 
       - name: Run composer install
         run: composer install --prefer-dist --no-progress
-        working-directory: ./backend
+        working-directory: ./backend/app
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -75,11 +75,11 @@ jobs:
         uses: php-actions/phpunit@v3
         with:
           php_extensions: "xdebug"
-          configuration: "./backend/tests/phpunit.php"
+          configuration: "./backend/tests/phpunit.xml"
           memory_limit: "256M"
 
       - name: Validate composer.json and composer.lock
-        working-directory: ./backend
+        working-directory: ./backend/app
         run: composer validate --strict
 
   # Linting:
