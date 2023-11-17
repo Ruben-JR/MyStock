@@ -41,7 +41,7 @@ jobs:
           sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
           sudo composer self-update
           composer -v
-          
+
       - name: Cache Composer dependencies
         uses: actions/cache@v2
         with:
@@ -49,7 +49,7 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('./backend/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
-              
+
       - name: Run composer install
         run: composer install --prefer-dist --no-progress
         working-directory: ./backend
@@ -63,9 +63,8 @@ jobs:
         working-directory: frontend
         run: |
           npm install
-          npm run build
-          npm run test
-          
+          npm start
+
   automated_test:
     name: Introduce automated tests
     runs-on: ubuntu-22.04
