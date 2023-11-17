@@ -63,7 +63,6 @@ jobs:
         working-directory: frontend
         run: |
           npm install
-          npm start
 
   automated_test:
     name: Introduce automated tests
