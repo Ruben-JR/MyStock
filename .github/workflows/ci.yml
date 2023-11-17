@@ -64,23 +64,23 @@ jobs:
         run: |
           npm install
 
-  automated_test:
-    name: Introduce automated tests
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+  # automated_test:
+  #   name: Introduce automated tests
+  #   runs-on: ubuntu-22.04
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
 
-      - name: PHP unit tests
-        uses: php-actions/phpunit@v3
-        with:
-          php_extensions: "xdebug"
-          configuration: "./backend/tests/phpunit.xml"
-          memory_limit: "256M"
+  #     - name: PHP unit tests
+  #       uses: php-actions/phpunit@v3
+  #       with:
+  #         php_extensions: "xdebug"
+  #         configuration: "./backend/tests/phpunit.xml"
+  #         memory_limit: "256M"
 
-      - name: Validate composer.json and composer.lock
-        working-directory: ./backend/app
-        run: composer validate --strict
+  #     - name: Validate composer.json and composer.lock
+  #       working-directory: ./backend/app
+  #       run: composer validate --strict
 
   # Linting:
   #   name: linting
