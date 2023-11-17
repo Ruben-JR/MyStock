@@ -1,0 +1,106 @@
+name: MyStock continuous integrations
+
+on:
+  push:
+    branches:
+      - master
+      - staging
+      - MYL/*
+  pull_request:
+    branches:
+      - master
+      - staging
+      - MYL/*
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build MyStock
+    runs-on: ubuntu-22.04
+    env:
+      COMPOSER_VERSION: 1
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          ini-values: phar.readonly=0
+          tools: composer
+          coverage: none
+
+      - name: Install Nginx
+        run: |
+          sudo apt install nginx
+
+      - name: Install composer
+        run: |
+          curl -sS https://getcomposer.org/installer -o composer-setup.php
+          sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+          sudo composer self-update
+          composer -v
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: ./backend/app
+          key: ${{ runner.os }}-composer-${{ hashFiles('./backend/app/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Run composer install
+        run: composer install --prefer-dist --no-progress
+        working-directory: ./backend/app
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '14'
+
+      - name: Setup Angular
+        working-directory: frontend
+        run: |
+          npm install
+
+  # automated_test:
+  #   name: Introduce automated tests
+  #   runs-on: ubuntu-22.04
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
+
+  #     - name: PHP unit tests
+  #       uses: php-actions/phpunit@v3
+  #       with:
+  #         php_extensions: "xdebug"
+  #         configuration: "./backend/tests/phpunit.xml"
+  #         memory_limit: "256M"
+
+  #     - name: Validate composer.json and composer.lock
+  #       working-directory: ./backend/app
+  #       run: composer validate --strict
+
+  # Linting:
+  #   name: linting
+  #   runs-on: ubuntu-22.04
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
+
+  #     - name: unify code style
+  #       uses: michaelw90/PHP-Lint@master
+
+  # Security_scanning:
+  #   name: Security/scanning
+  #   runs-on: ubuntu-22.04
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
+
+  #     - name: Phpsecure Vulnerabilities Scanner
+  #       uses: PhpSecureScanner/phpsecure_action@v0.1.6
+  #       env:
+  #         # PHPSECURE_AUTH_TOKEN: ${{ secrets.PHPSECURE_AUTH_TOKEN }}
+  #         PROJECT_NAME: "MyStock"
