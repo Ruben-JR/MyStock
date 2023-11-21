@@ -1,4 +1,3 @@
-<!-- handling CRUD operations related to specific entities  -->
 <?php
     namespace Product\Controllers;
 

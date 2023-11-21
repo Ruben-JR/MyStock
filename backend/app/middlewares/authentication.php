@@ -1,6 +1,4 @@
-<!-- Authentication validation -->
 <?php
-
     namespace Auth\Middleware;
 
     use Symfony\Component\HttpFoundation\Request;

@@ -1,6 +1,4 @@
-<!-- Input validation -->
 <?php
-
     namespace Input\Middleware;
 
     use Symfony\Component\HttpFoundation\Request;

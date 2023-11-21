@@ -1,4 +1,3 @@
-// app/Models/Product.php
 <?php
     namespace Product\Models;
 

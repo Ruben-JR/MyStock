@@ -1,4 +1,3 @@
-// routes/web.php or routes/api.php
 <?php
     namespace Product\Routes;
 

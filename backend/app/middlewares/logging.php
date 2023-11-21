@@ -1,6 +1,4 @@
-<!-- logging validation -->
 <?php
-
     namespace Login\Middleware;
 
     use Symfony\Component\HttpFoundation\Request;

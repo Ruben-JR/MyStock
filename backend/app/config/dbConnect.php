@@ -1,14 +1,15 @@
 <?php
     use Dotenv\Dotenv;
     // Include composer autoload
-    require __DIR__ . '/../vendor/autoload.php';
+    require __DIR__ . '/vendor/autoload.php';
 
     //Load environment variables from .env
-    $dotenv = Dotenv/Dotenv::createImmutable(__DIR__ . '/..');
+    $dotenv = Dotenv::createImmutable(__DIR__ . './');
     $dotenv->load();
 
     //access environments variable
     $db_host = $_ENV['DB_HOST'];
+    $db_user = $_ENV['DB_USER'];
     $db_name = $_ENV['DB_NAME'];
     $db_password = $_ENV['DB_PASSWORD'];
 

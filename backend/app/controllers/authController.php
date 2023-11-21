@@ -1,16 +1,17 @@
-<!-- handling CRUD operations related to specific entities  -->
 <?php
     namespace User\Controllers;
 
-    use \App\Config\DbConnect;
+    use \App\Config\dbConnect;
+    
+    require_once '../config/dbConnect.php'
 
     class UserController
     {
         private $con;
-
+        
         public function __construct()
         {
-            $this->con = DbConnect::getConnection();
+            $this->con = dbConnect::getConnection();
         }
 
         public function createUser()
