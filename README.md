@@ -1,4 +1,5 @@
 ## MyStock
+
 <div style="display: inline_block">
     <img align="center" alt="Home-Page" height="200" width="400" src="">
     <img align="center" alt="Product-Page" height="200" width="400" src="">
@@ -6,19 +7,15 @@
     <img align="center" alt="settings-Page" height="200" width="400" src="">
 </div>
 
-
 ## About the project
 
 This project was created to study the Angular, PHP and MySQL with Linux, creating components, services and routes with angular,  this was done with the help of some youtube tutorials for better practice and learning. The design was inspired by designs found on pinterest and customize the design to fit your needs.
-
 
 ## Objective
 
 The goal of this project is to create a stock software of products for a laboratory, this has as an objective to practice my knowledge in this technology and become a better developer every day.
 
 ## Run and instalation
-
-### Frontend
 
 The `frontend` is `builded` with `Angular`. You will need to install dependencies and add angular CLI commands to run this project.
 Inside the folder `frontend` search the files inside `docs` folder and follow the instroctions to configure the `Angular app`.
