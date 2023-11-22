@@ -453,7 +453,6 @@
                 }
             ],
             "install-path": "../phpoption/phpoption"
-        },
         {
             "name": "phpunit/php-code-coverage",
             "version": "9.2.29",
