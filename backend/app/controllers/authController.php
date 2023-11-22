@@ -1,17 +1,13 @@
 <?php
     namespace User\Controllers;
 
-    use \App\Config\dbConnect;
-    
-    require_once '../config/dbConnect.php'
-
     class UserController
     {
-        private $con;
-        
+        private $conn;
+
         public function __construct()
         {
-            $this->con = dbConnect::getConnection();
+            $this->conn = require __DIR__ . '../config/dbConnect.php';
         }
 
         public function createUser()
@@ -25,13 +21,13 @@
                     return http_response_code(400);
                 }
 
-                $username = mysqli_real_escape_string($con, trim($request->data->username));
-                $email = mysqli_real_escape_string($con, trim($request->data->email));
-                $password = mysqli_real_escape_string($con, trim($request->data->password));
-                $phone = mysqli_real_escape_string($con, (int)$request->data->phone < 1);
+                $username = mysqli_real_escape_string($this->conn, trim($request->data->username));
+                $email = mysqli_real_escape_string($this->conn, trim($request->data->email));
+                $password = mysqli_real_escape_string($this->conn, trim($request->data->password));
+                $phone = mysqli_real_escape_string($this->conn, (int)$request->data->phone < 1);
 
                 $sql = "INSERT INTO `utilizador` (`username`, `email`, `password`, `phone`) values ('{$username}', '{$email}', '{$password}', '{$phone}')";
-                if(mysqli_query($con, $sql)) {
+                if(mysqli_query($this->conn, $sql)) {
                     $utilizador = [
                         'username' => $username,
                         'email' => $email,
@@ -51,7 +47,7 @@
             // read users logic goes here
             $utilizador = [];
             $sql = "SELECT * FROM utilizador";
-            if($result = mysqli_query($con, $sql)) {
+            if($result = mysqli_query($this->conn, $sql)) {
                 $pt = 0;
                 while($row = mysqli_fetch_array($result)) {
                     $utilizador[$pt]["id"]          = $row["id"];
@@ -78,13 +74,13 @@
                     return http_response_code(400);
                 }
 
-                $username = mysqli_real_escape_string($con, trim($request->data->username));
-                $email = mysqli_real_escape_string($con, trim($request->data->email));
-                $password = mysqli_real_escape_string($con, trim($request->data->password));
-                $phone = mysqli_real_escape_string($con, trim($request->data->phone));
+                $username = mysqli_real_escape_string($this->conn, trim($request->data->username));
+                $email = mysqli_real_escape_string($this->conn, trim($request->data->email));
+                $password = mysqli_real_escape_string($this->conn, trim($request->data->password));
+                $phone = mysqli_real_escape_string($this->conn, trim($request->data->phone));
 
                 $sql = "UPDATE `utilizador` SET `username` = `$username`, `email` = `$email`, `password` = `$password`, `phone` = `$phone`";
-                if(mysqli_query($con, $sql)) {
+                if(mysqli_query($this->conn, $sql)) {
                     http_response_code(204);
                 }
                 else {
@@ -96,13 +92,13 @@
         public function deleteUser($id)
         {
             // delete user logic goes here
-            $id = ($_GET['id'] !== null && (int)$_GET['id'] > 0) ? mysqli_real_escape_string($con, (int)$_GET['id']) : false;
+            $id = ($_GET['id'] !== null && (int)$_GET['id'] > 0) ? mysqli_real_escape_string($this->conn, (int)$_GET['id']) : false;
             if(!$id){
                 return http_response_code(400);
             }
 
             $sql = "DELETE FROM `utilizador` WHERE `id` = `{$id}` LIMIT 1";
-            if(mysqli_query($CON, $sql)) {
+            if(mysqli_query($this->conn, $sql)) {
                 http_response_code(204);
             }
             else {
