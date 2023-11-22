@@ -1,10 +1,10 @@
 <?php
     use Dotenv\Dotenv;
     // Include composer autoload
-    require __DIR__ . '/vendor/autoload.php';
+    require __DIR__ . '/../vendor/autoload.php';
 
     //Load environment variables from .env
-    $dotenv = Dotenv::createImmutable(__DIR__ . './');
+    $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
     $dotenv->load();
 
     //access environments variable
@@ -14,7 +14,7 @@
     $db_name = $_ENV['DB_NAME'];
 
     $conn = mysqli_connect($db_host, $db_user, $db_password, $db_name);
-    if (!$con) {
+    if (!$conn) {
         echo "Connction failed" . mysqli_connect_error();
     }
 

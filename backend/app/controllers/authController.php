@@ -93,7 +93,7 @@
         {
             // delete user logic goes here
             $id = ($_GET['id'] !== null && (int)$_GET['id'] > 0) ? mysqli_real_escape_string($this->conn, (int)$_GET['id']) : false;
-            if(!$id){
+            if(!$id) {
                 return http_response_code(400);
             }
 
