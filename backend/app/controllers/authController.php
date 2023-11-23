@@ -1,17 +1,14 @@
 <?php
     namespace User\Controllers;
 
-    class UserController
-    {
+    class UserController {
         private $conn;
 
-        public function __construct()
-        {
+        public function __construct() {
             $this->conn = require __DIR__ . '../config/dbConnect.php';
         }
 
-        public function createUser()
-        {
+        public function createUser() {
             // create user logic goes here
             $postdata = file_get_contents("php://input");
             if(isset($postdata) && !empty($postdata)){
@@ -42,8 +39,7 @@
             }
         }
 
-        public function readUsers()
-        {
+        public function readUsers() {
             // read users logic goes here
             $utilizador = [];
             $sql = "SELECT * FROM utilizador";
@@ -64,8 +60,7 @@
             }
         }
 
-        public function updateUser()
-        {
+        public function updateUser() {
             // update user logic goes here
             $postdata = file_get_contents("php://input");
             if(isset($postdata) && !empty($postdata)) {
@@ -89,8 +84,7 @@
             }
         }
 
-        public function deleteUser($id)
-        {
+        public function deleteUser($id) {
             // delete user logic goes here
             $id = ($_GET['id'] !== null && (int)$_GET['id'] > 0) ? mysqli_real_escape_string($this->conn, (int)$_GET['id']) : false;
             if(!$id) {

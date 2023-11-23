@@ -1,17 +1,14 @@
 <?php
     namespace Product\Controllers;
 
-    class ProductController
-    {
+    class ProductController {
         private $conn;
 
-        public function __construct()
-        {
+        public function __construct() {
             $this->conn = require __DIR__ . '../config/dbConnect.php';
         }
 
-        public function createProduct()
-        {
+        public function createProduct() {
             // create product logic goes here
             $postdata = file_get_contents("php://input");
             if(isset($postdata) && !empty($postdata)){
@@ -54,8 +51,7 @@
             }
         }
 
-        public function readProducts()
-        {
+        public function readProducts() {
             // read products logic goes here
             $products = [];
             $sql = "SELECT * FROM products";
@@ -82,8 +78,7 @@
             }
         }
 
-        public function updateProduct()
-        {
+        public function updateProduct() {
             // update product logic goes here
             if(isset($postdata) && !empty($postdata)){
                 //Extract the data
@@ -114,8 +109,7 @@
             }
         }
 
-        public function deleteProduct($id)
-        {
+        public function deleteProduct($id) {
             // delete product logic goes here
             $id = ($_GET['id'] != null && (int)$_GET['id'] > 0) ? mysqli_real_escape_string($this->conn, (int)$_GET['id']) : false;
             if(!$id) {
