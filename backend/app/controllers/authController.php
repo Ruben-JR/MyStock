@@ -5,7 +5,7 @@
         private $conn;
 
         public function __construct() {
-            $this->conn = require __DIR__ . '../config/dbConnect.php';
+            $this->conn = require __DIR__ . '/../config/dbConnect.php';
         }
 
         public function createUser() {
