@@ -1,20 +1,14 @@
-<!-- handling CRUD operations related to specific entities  -->
 <?php
     namespace Product\Controllers;
 
-    use \App\Config\DbConnect;
+    class ProductController {
+        private $conn;
 
-    class ProductController
-    {
-        private $con;
-
-        public function __construct()
-        {
-            $this->con = DbConnect::getConnection();
+        public function __construct() {
+            $this->conn = require __DIR__ . '../config/dbConnect.php';
         }
 
-        public function createProduct()
-        {
+        public function createProduct() {
             // create product logic goes here
             $postdata = file_get_contents("php://input");
             if(isset($postdata) && !empty($postdata)){
@@ -26,18 +20,18 @@
                 }
 
                 // sanitize the datas posted
-                $fornecedor = mysqli_real_escape_string($con, trim($request->data->fornecedor));
-                $designacao = mysqli_real_escape_string($con, trim($request->data->designacao));
-                $fabricante = mysqli_real_escape_string($con, trim($request->data->fabricante));
-                $numRef = mysqli_real_escape_string($con, (int)$request->data->numRef);
-                $lote = mysqli_real_escape_string($con, (int)$request->data->lote);
-                $testEmbal = mysqli_real_escape_string($con, trim($request->data->testeEmbal));
-                $apres = mysqli_real_escape_string($con, trim($request->data->apres));
-                $precoEuro = mysqli_real_escape_string($con, (int)$request->data->precoEuro);
-                $precoEscudo = mysqli_real_escape_string($con, (int)$request->data->precoEscudo);
+                $fornecedor = mysqli_real_escape_string($this->conn, trim($request->data->fornecedor));
+                $designacao = mysqli_real_escape_string($this->conn, trim($request->data->designacao));
+                $fabricante = mysqli_real_escape_string($this->conn, trim($request->data->fabricante));
+                $numRef = mysqli_real_escape_string($this->conn, (int)$request->data->numRef);
+                $lote = mysqli_real_escape_string($this->conn, (int)$request->data->lote);
+                $testEmbal = mysqli_real_escape_string($this->conn, trim($request->data->testeEmbal));
+                $apres = mysqli_real_escape_string($this->conn, trim($request->data->apres));
+                $precoEuro = mysqli_real_escape_string($this->conn, (int)$request->data->precoEuro);
+                $precoEscudo = mysqli_real_escape_string($this->conn, (int)$request->data->precoEscudo);
 
-                $sql = "INSERT INTO `products`(`fornecedor`, `designacao`, `fabricante`, `numRef`, `lote`, `testEmbal`, `apres`, `precoEuro`, `precoescudo`) VALUES ( '{$fornecedor}', '{$designacao}', '{$fabricante}', '{$numRef}', '{$lote}', '{$testeEmbal}', '{$apres}', '{$precoEuro}', '{$precoEscudo}')";
-                if(mysqli_query($con, $sql)) {
+                $sql = "INSERT INTO `products`(`fornecedor`, `designacao`, `fabricante`, `numRef`, `lote`, `testEmbal`, `apres`, `precoEuro`, `precoescudo`) VALUES ( '{$fornecedor}', '{$designacao}', '{$fabricante}', '{$numRef}', '{$lote}', '{$testEmbal}', '{$apres}', '{$precoEuro}', '{$precoEscudo}')";
+                if(mysqli_query($this->conn, $sql)) {
                     $products = [
                         'fornecedor' => $fornecedor,
                         'designacao' => $designacao,
@@ -57,12 +51,11 @@
             }
         }
 
-        public function readProducts()
-        {
+        public function readProducts() {
             // read products logic goes here
             $products = [];
             $sql = "SELECT * FROM products";
-            if($result = mysqli_query($con, $sql)) {
+            if($result = mysqli_query($this->conn, $sql)) {
                 $pt = 0;
                 while($row = mysqli_fetch_array($result)){
                     $products[$pt]["id"]            = $row["id"];
@@ -85,8 +78,7 @@
             }
         }
 
-        public function updateProduct()
-        {
+        public function updateProduct() {
             // update product logic goes here
             if(isset($postdata) && !empty($postdata)){
                 //Extract the data
@@ -97,17 +89,18 @@
                 }
 
                 // sanitize the datas posted
-                $fornecedor = mysqli_real_escape_string($con, trim($request->data->fornecedor));
-                $designacao = mysqli_real_escape_string($con, trim($request->data->designacao));
-                $fabricante = mysqli_real_escape_string($con, trim($request->data->fabricante));
-                $numRef = mysqli_real_escape_string($con, (int)$request->data->numRef);
-                $testeEmbal = mysqli_real_escape_string($con, trim($request->data->testeEmbal));
-                $apres = mysqli_real_escape_string($con, trim($request->data->apres));
-                $precoEuro = mysqli_real_escape_string($con, (int)$request->data->precoEuro);
-                $precoEscudo = mysqli_real_escape_string($con, (int)$request->data->precoEscudo);
+                $fornecedor = mysqli_real_escape_string($this->conn, trim($request->data->fornecedor));
+                $designacao = mysqli_real_escape_string($this->conn, trim($request->data->designacao));
+                $fabricante = mysqli_real_escape_string($this->conn, trim($request->data->fabricante));
+                $numRef = mysqli_real_escape_string($this->conn, (int)$request->data->numRef);
+                $testEmbal = mysqli_real_escape_string($this->conn, trim($request->data->testeEmbal));
+                $lote = mysqli_real_escape_string($this->conn, (int)$request->data->lote);
+                $apres = mysqli_real_escape_string($this->conn, trim($request->data->apres));
+                $precoEuro = mysqli_real_escape_string($this->conn, (int)$request->data->precoEuro);
+                $precoEscudo = mysqli_real_escape_string($this->conn, (int)$request->data->precoEscudo);
 
                 $sql = "UPDATE `products` SET `fornecedor` = `$fornecedor`, `designacao` = `$designacao`, `fabricante` = `$fabricante`, `numRef` = `$numRef`, `lote` = `$lote`, `testEmbal` = `$testEmbal`, `apres` = `$apres`, `precoEuro` = `$precoEuro`, `precoEscudo ` = `$precoEscudo `";
-                if(mysqli_query($con, $sql)) {
+                if(mysqli_query($this->conn, $sql)) {
                     http_response_code(204);
                 }
                 else {
@@ -116,16 +109,15 @@
             }
         }
 
-        public function deleteProduct($id)
-        {
+        public function deleteProduct($id) {
             // delete product logic goes here
-            $id = ($_GET['id'] != null && (int)$_GET['id'] > 0) ? mysqli_real_escape_string($con, (int)$_GET['id']) : false;
+            $id = ($_GET['id'] != null && (int)$_GET['id'] > 0) ? mysqli_real_escape_string($this->conn, (int)$_GET['id']) : false;
             if(!$id) {
                 return http_response_code(400);
             }
 
             $sql = "DELETE FROM `products` WHERE `id` = '{$id}' LIMIT 1";
-            if(mysqli_query($con, $sql)) {
+            if(mysqli_query($this->conn, $sql)) {
                 http_response_code(204);
             }
             else {

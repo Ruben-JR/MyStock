@@ -1,14 +1,7 @@
-// app/Models/Product.php
 <?php
     namespace User\Models;
-
     use Illuminate\Database\Eloquent\Model;
-
-    class Product extends Model
-    {
-        // Define the properties (columns) that can be mass-assigned
+    class Product extends Model {
         protected $fillable = ['name', 'price', 'description'];
-
-        // Additional model-specific methods or properties can be defined here
     }
 ?>
