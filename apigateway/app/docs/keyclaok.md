@@ -17,6 +17,7 @@ For this project  we `use` the `keycloak` with docker, so make sure you have a d
     3. Create a new realm
     4. Create a new user
     5. Create a new client
+    6. create a new role
 
 3. **Create a .env file app folder:** add the follow environments variable
 

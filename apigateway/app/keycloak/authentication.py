@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from .keycloak_utils import keycloak_connection, keycloak_admin
 from .keycloak_schemas import LoginSchema, ChangePasswordSchema
-from app.auth.keycloak_utils import CLIENT_ID
+from app.keycloak.keycloak_utils import CLIENT_ID
 from keycloak.exceptions import KeycloakPostError, KeycloakError
 
 router = APIRouter(tags=["keycloak-authentication"])

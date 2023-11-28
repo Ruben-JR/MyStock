@@ -4,14 +4,14 @@ import json
 from keycloak import KeycloakAdmin
 from keycloak import KeycloakOpenIDConnection
 from keycloak.exceptions import KeycloakError, KeycloakPutError
-from app.auth.keycloak_schemas import KeycloakUserUpdateSchema, KeycloakSelfUserUpdateSchema
+from app.keycloak.keycloak_schemas import KeycloakUserUpdateSchema, KeycloakSelfUserUpdateSchema
 
 from dotenv import load_dotenv
 load_dotenv()
 
 SERVER_URL = os.getenv('SERVER_URL', "SERVER_URL")
-#USERNAME = os.getenv('KEYCLOAK_ADMIN_USERNAME', "admin")
-#PASSWORD = os.getenv('KEYCLOAK_ADMIN_PASSWORD', "admin")
+USERNAME = os.getenv('KEYCLOAK_ADMIN_USERNAME', "USERNAME")
+PASSWORD = os.getenv('KEYCLOAK_ADMIN_PASSWORD', "PASSWORD")
 REALM_NAME = os.getenv('REALM_NAME', "REALM_NAME")
 CLIENT_ID = os.getenv('CLIENT_ID', "CLIENT_ID")
 CLIENT_SECRET = os.getenv('CLIENT_SECRET', "CLIENT_SECRET")
@@ -21,7 +21,8 @@ keycloak_connection = KeycloakOpenIDConnection(
     client_secret_key=CLIENT_SECRET,
     realm_name=REALM_NAME,
     client_id=CLIENT_ID,
-    verify=True)
+    verify=True
+)
 
 keycloak_admin = KeycloakAdmin(connection=keycloak_connection)
 access_token = keycloak_admin.token['access_token']
