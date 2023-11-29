@@ -13,7 +13,7 @@ export class Auth {
     constructor(private http: HttpClient) { }
 
     public login(username: string, password: string): Observable<string> {
-        return this.http.post(this.apiUrl + '/user/login',
+        return this.http.post(this.apiUrl + '/login',
             {
                 username: username,
                 password: password,
@@ -23,7 +23,7 @@ export class Auth {
     }
 
     public register(username: string, email: string, password: string, phone: number): Observable<string> {
-        return this.http.post(this.apiUrl + '/user/register',
+        return this.http.post(this.apiUrl + '/register',
         {
             username: username,
             email: email,

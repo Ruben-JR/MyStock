@@ -26,12 +26,6 @@ async def login(payload: LoginSchema):
         print(err.__str__())
         raise HTTPException(status_code=401, detail="Invalid token")
 
-    try:
-        roles = userinfo.get("resource_access").get(CLIENT_ID).get('roles')
-    except Exception as err:
-        print(err.__str__())
-        raise HTTPException(status_code=401, detail=err.__str__())
-
     return {'token': token}
 
 

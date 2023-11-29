@@ -16,14 +16,15 @@ export class LoginComponent {
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      username: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
     });
   }
 
   public onSubmit() {
+    console.log(this.loginForm.get('email')!.value)
     this.authService.login(
-      this.loginForm.get('username')!.value,
+      this.loginForm.get('email')!.value,
       this.loginForm.get('password')!.value
     );
   }
