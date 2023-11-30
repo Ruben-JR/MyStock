@@ -21,7 +21,7 @@ export class AuthService {
 
   public register(firstName: string, lastName: string, email: string, password: string, phone: number): void {
     this.authentication.register(firstName, lastName, email, password, phone).subscribe((token) => {
-      // localStorage.setItem(this.tokenKey, token);
+      localStorage.setItem(this.tokenKey, token);
       this.router.navigate(['/login']);
     });
   }

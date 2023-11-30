@@ -25,6 +25,7 @@ export class Auth {
     public register(firstName: string, lastName: string, email: string, password: string, phone: number): Observable<string> {
         return this.http.post(this.apiUrl + '/register',
             {
+                username: firstName + " " + lastName,
                 firstName: firstName,
                 lastName: lastName,
                 email: email,

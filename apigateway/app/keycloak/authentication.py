@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from .keycloak_utils import keycloak_connection, keycloak_admin
 from .keycloak_schemas import LoginSchema, ChangePasswordSchema, RegisterSchema
-from app.keycloak.keycloak_utils import CLIENT_ID, keycloak_connection
+from app.keycloak.keycloak_utils import keycloak_connection
 from keycloak.exceptions import KeycloakPostError, KeycloakError
 
 router = APIRouter(tags=["keycloak-authentication"])
@@ -34,9 +34,9 @@ async def register(payload: RegisterSchema):
     try:
         token = keycloak_admin.create_user(
             {
-                "username": payload.firstName + " " + payload.lastName,
+                "username": payload.username,
                 "email": payload.email,  
-                "enable": True,
+                "enabled": True,
                 "firstName": payload.firstName,
                 "lastName": payload.lastName,
                 "credentials": [{"value": "secret","type": payload.password}],
@@ -46,15 +46,11 @@ async def register(payload: RegisterSchema):
             },
             exist_ok=False
         )
+        
+        keycloak_admin.assign_realm_role(token, role_name="your-realm-user-role")
+        
     except KeycloakError as err:
         raise HTTPException(status_code=err.response_code, detail=err.response_body.__str__())
-    
-    access_token = token['access_token']
-    try:
-        userinfo = keycloak_connection.keycloak_openid.userinfo(token=access_token)
-    except Exception as err:
-        print(err.__str__())
-        raise HTTPException(status_code=401, detail="Invalid token")
     
     return {'token': token}
         
