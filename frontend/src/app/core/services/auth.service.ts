@@ -12,23 +12,25 @@ export class AuthService {
 
   constructor(private authentication: Auth, private router: Router) { }
 
-  public login(username: string, password: string): void {
-    this.authentication.login(username, password).subscribe((token) => {
+  public login(email: string, password: string): void {
+    this.authentication.login(email, password).subscribe((token) => {
       localStorage.setItem(this.tokenKey, token);
       this.router.navigate(['/']);
     });
   }
 
-  public register(username: string, email: string, password: string, phone: number): void {
-    this.authentication.register(username, email, password, phone).subscribe((token) => {
-      localStorage.setItem(this.tokenKey, token);
-      this.router.navigate(['/']);
+  public register(firstName: string, lastName: string, email: string, password: string, phone: number): void {
+    this.authentication.register(firstName, lastName, email, password, phone).subscribe((token) => {
+      // localStorage.setItem(this.tokenKey, token);
+      this.router.navigate(['/login']);
     });
   }
 
-  public logout() {
-    localStorage.removeItem(this.tokenKey);
-    this.router.navigate(['/login']);
+  public logout(): void {
+    // this.authentication.logout(this.tokenKey).subscribe(() => {
+        localStorage.removeItem(this.tokenKey);
+        this.router.navigate(['/login']);
+    // });
   }
 
   public isLoggedIn(): boolean {

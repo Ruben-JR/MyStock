@@ -5,7 +5,14 @@ class LoginSchema(BaseModel):
     username: str
     password: str
 
-
+class RegisterSchema(BaseModel):
+    username: str
+    firstName: str
+    lastName: str
+    email: str
+    password: str
+    phone: int
+    
 class KeycloakUserSchema(BaseModel):
     firstName: str
     lastName: str

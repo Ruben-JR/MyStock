@@ -22,7 +22,6 @@ export class LoginComponent {
   }
 
   public onSubmit() {
-    console.log(this.loginForm.get('email')!.value)
     this.authService.login(
       this.loginForm.get('email')!.value,
       this.loginForm.get('password')!.value
