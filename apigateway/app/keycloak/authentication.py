@@ -32,14 +32,14 @@ async def login(payload: LoginSchema):
 @router.post("/register")
 async def register(payload: RegisterSchema):
     try:
-        token = keycloak_admin.create_user(
+        keycloak_user_id = keycloak_admin.create_user(
             {
                 "username": payload.username,
                 "email": payload.email,  
                 "enabled": True,
                 "firstName": payload.firstName,
                 "lastName": payload.lastName,
-                "credentials": [{"value": "secret","type": payload.password}],
+                "emailVerified": True,
                 "attributes": {
                     "phone": payload.phone,
                 }
@@ -47,12 +47,12 @@ async def register(payload: RegisterSchema):
             exist_ok=False
         )
         
-        keycloak_admin.assign_realm_role(token, role_name="your-realm-user-role")
+        keycloak_admin.set_user_password(keycloak_user_id, payload.password, False)
         
     except KeycloakError as err:
         raise HTTPException(status_code=err.response_code, detail=err.response_body.__str__())
     
-    return {'token': token}
+    return {'user_id': keycloak_user_id}
         
 
 @router.post("/logout")
