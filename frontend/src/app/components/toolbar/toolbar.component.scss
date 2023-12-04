@@ -1,38 +1,61 @@
 .toolbar {
     display: flex;
     justify-content: space-between;
+    background: #263238;
+    padding: 1rem;
 
-    .search {
-        width: 30%;
-        max-width: 300px;
-        background: rgba(77, 70, 70, 0.2);
-        display: flex;
-        align-items: center;
-        border-radius: 20px;
-        padding: 5px 20px;
-
-        input {
-            background: transparent;
-            flex: 1;
-            border: 0;
-            outline: none;
-            padding: 0px 5px;
-            font-size: 15px;
-            color: #263238;
-        }
-
-        button {
-            width: 25px;
-            border: 0;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-
-            mat-icon {
-                padding: 1px 1px 1px 1px;
-            }
-        }
+    .search-box {
+        margin: auto;
+        width: fit-content;
+        height: fit-content;
+        position: relative;
+    }
+    
+    .input-search {
+        height: 50px;
+        width: 300px; /* Set a default width */
+        border-style: none;
+        padding: 5px;
+        font-size: 18px;
+        letter-spacing: 2px;
+        outline: none;
+        border-radius: 0px; /* Set a default border-radius */
+        transition: all .5s ease-in-out;
+        background-color: transparent; /* Set a default background color */
+        border-bottom: 1px solid rgba(255, 255, 255, .5); /* Add a default border */
+        color: #fff;
+    }
+    
+    .input-search::placeholder {
+        color: rgba(255, 255, 255, .5);
+        font-size: 18px;
+        letter-spacing: 2px;
+        font-weight: 100;
+    }
+    
+    .btn-search {
+        width: 50px;
+        height: 50px;
+        border-style: none;
+        font-size: 20px;
+        font-weight: bold;
+        outline: none;
+        cursor: pointer;
+        border-radius: 50%;
+        position: absolute;
+        right: 0px;
+        color: #ffffff;
+        background-color: transparent;
+        pointer-events: painted;
+    }
+    
+    .input-search:focus,
+    .btn-search:focus~.input-search {
+        width: 300px;
+        border-radius: 0px;
+        background-color: transparent;
+        border-bottom: 1px solid rgba(255, 255, 255, .5);
+        transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
     }
 
     ::placeholder {
