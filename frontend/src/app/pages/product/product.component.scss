@@ -13,15 +13,9 @@
     }
 }
 
-.add:hover {
-    background-color: #fff;
-    color: #000;
-}
-
 .table {
     margin: 3% 0% 0% 0%;
     background-color: #fff;
-    box-shadow: 0.063rem 0 1.10rem 0 #8690a3;
 
     .btn-table {
         margin: 0% 3% 0% 3%;
@@ -36,6 +30,7 @@
     }
 }
 
+
 .modal {
     .btn {
         background-color: #263238;
@@ -46,5 +41,11 @@
     .btn:hover {
         background-color: #30596d;
         color: #fff;
+    }
+
+    .btn-modal{
+        background-color: #263238;
+        color: #fff;
+        border-color: #263238;
     }
 }
