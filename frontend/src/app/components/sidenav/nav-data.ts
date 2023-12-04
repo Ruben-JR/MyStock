@@ -9,9 +9,4 @@ export const navbarData = [
         icon: 'fal fa-box-open',
         label: 'Products'
     },
-    {
-        routerLink: 'statistics',
-        icon: 'fal fa-chart-bar',
-        label: 'Statistics'
-    },
 ];

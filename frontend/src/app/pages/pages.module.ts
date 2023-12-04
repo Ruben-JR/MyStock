@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
+import { NgApexchartsModule } from 'ng-apexcharts';
 import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 
@@ -27,6 +27,7 @@ import { ApiService } from 'src/app/services/api.service';
     FormsModule,
     MatIconModule,
     ReactiveFormsModule,
+    NgApexchartsModule,
   ],
   providers: [
     ApiService,

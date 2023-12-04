@@ -23,31 +23,31 @@ export class ApiService {
 
   getProducts(): Observable<Product> {
     return this.http
-      .get<Product>(this.apiUrl + '/product')
+      .get<Product>(this.apiUrl + '/get-products')
       .pipe(retry(1), catchError(this.handleError));
   }
 
   getProductsId(id: any):Observable<Product> {
     return this.http
-      .get<Product>(this.apiUrl + '/productId' + id)
+      .get<Product>(this.apiUrl + '/get-products-id/' + id)
       .pipe(retry(1), catchError(this.handleError));
   }
 
   createProduct(product: any): Observable<Product> {
     return this.http
-      .post<Product>(this.apiUrl + '/createProduct', JSON.stringify(product), this.httpOptions)
+      .post<Product>(this.apiUrl + '/create-products', JSON.stringify(product), this.httpOptions)
       .pipe(retry(1), catchError(this.handleError));
   }
 
   updateProduct(id: any, product: any): Observable<Product> {
     return this.http
-      .put<Product>(this.apiUrl + '/updateProduct' + id, JSON.stringify(product), this.httpOptions)
+      .put<Product>(this.apiUrl + '/update-products/' + id, JSON.stringify(product), this.httpOptions)
       .pipe(retry(1), catchError(this.handleError));
   }
 
   deleteProduct(id: any) {
     return this.http
-      .delete<Product>(this.apiUrl + '/deleteProduct' + id, this.httpOptions)
+      .delete<Product>(this.apiUrl + '/delete-products/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.handleError));
   }
 

@@ -1,61 +1,35 @@
-<!-- The entry point of your application. routes requests to your application logic -->
-
 <?php
     // Include Composer autoloader to load dependencies
     require_once __DIR__ . '/../vendor/autoload.php';
-    // Bootstrap your application, including any configuration settings
-    require_once __DIR__ . '/bootstrap.php';
 
-    use App\Middleware\AuthenticationMiddleware;
+    use Symfony\Component\Routing\RouteCollection;
+    use Symfony\Component\Routing\Route;
+    use Symfony\Component\Routing\RequestContext;
+    use Symfony\Component\Routing\Matcher\UrlMatcher;
+    use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
-     // Instantiate your middleware
-     $authenticationMiddleware = new AuthenticationMiddleware();
+    require_once 'router/product.php';
 
-     // Define a simple middleware stack
-     $middlewareStack = [
-         // Add other middleware instances as needed
-         $authenticationMiddleware,
-         // ... additional middleware instances
-     ];
+    // Instantiate the Router class and define routes
+    $router = new Product\Routes\Router();
+    $routeCollection = new RouteCollection();
+    $router->defineRoutes($routeCollection);
 
-    // Handle the incoming request using your router
-    $request = \Symfony\Component\HttpFoundation\Request::createFromGlobals();
+    // Create a request context
+    $requestContext = new RequestContext();
+    $requestContext->fromRequest($_SERVER['REQUEST_URI']);
 
-    // Dispatch the request through the middleware stack
-    $response = $this->dispatchMiddleware($request, $middlewareStack);
+    // Create a URL matcher
+    $matcher = new UrlMatcher($routeCollection, $requestContext);
 
-    // Create the router and define your routes
-    $router = new \YourNamespace\Router();
-    $router->defineRoutes(); // This method should define your application routes
-
-    // Dispatch the request to the appropriate controller and action
-    $response = $router->dispatch($request);
-
-    // Send the response to the client
-    $response->send();
-
-
-    // Middleware dispatcher function
-    function dispatchMiddleware($request, $middlewareStack)
-    {
-        $defaultHandler = function ($request) {
-            // Default handler if no middleware left
-            // You can replace this with your application's default behavior
-            return new \Symfony\Component\HttpFoundation\Response('Not Found', 404);
-        };
-
-        // Create a closure for dispatching middleware
-        $dispatcher = array_reduce(
-            array_reverse($middlewareStack),
-            function ($next, $middleware) {
-                return function ($request) use ($middleware, $next) {
-                    return $middleware->handle($request, $next);
-                };
-            },
-            $defaultHandler
-        );
-
-        // Dispatch the request through the middleware stack
-        return $dispatcher($request);
+    // Try to match the requested path
+    try {
+        $parameters = $matcher->match($_SERVER['REQUEST_URI']);
+        // Handle the matched route here
+        // You can use $parameters to get information about the matched route
+        echo 'Handling route: ' . $parameters['_route'];
+    } catch (ResourceNotFoundException $exception) {
+        // Handle 404 error here
+        echo '404 Not Found';
     }
 ?>
