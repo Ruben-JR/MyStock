@@ -89,6 +89,29 @@ async def get_user(credentials: HTTPAuthorizationCredentials = Depends(security)
     raise HTTPException
 
 
+# def update_keycloak_user(keycloak_user_update_payload: KeycloakUserUpdateSchema) -> dict:
+#     try:
+#         user_keycloak_id = keycloak_admin.get_user_id(keycloak_user_update_payload.email)
+#     except KeycloakError as err:
+#         return {'error': err.response_body.__str__(), 'status_code': err.response_code}
+
+#     try:
+#         keycloak_admin.update_user(user_id=user_keycloak_id,
+#                                    payload=keycloak_user_update_payload.__dict__)
+#     except KeycloakError as err:
+#         return {'error': err.response_body.__str__(), 'status_code': err.response_code}
+
+#     return keycloak_user_update_payload.__dict__
+
+
+# def update_keycloak_self_user(keycloak_user_update_payload: KeycloakSelfUserUpdateSchema, user_keycloak_id: str) -> dict:
+#     try:
+#         keycloak_admin.update_user(user_id=user_keycloak_id,
+#                                    payload=keycloak_user_update_payload.__dict__)
+#     except KeycloakError as err:
+#         return {'error': err.response_body.__str__(), 'status_code': err.response_code}
+
+
 @router.patch("/change-password")
 async def update_password(change_password_payload: ChangePasswordSchema, user: dict = Depends(get_user)):
     if user is None:

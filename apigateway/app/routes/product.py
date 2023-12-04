@@ -37,7 +37,7 @@ def get_product(user: dict = Depends(get_user)):
     return response
 
 @router.get("/get-products-id/<id>")
-def get_product_id(user: dict = Depends(get_user)):
+def get_product_id(id: int, user: dict = Depends(get_user)):
     if user is None:
         raise HTTPException(status_code=401, detail="Invalid token or user information not found")
     

@@ -13,14 +13,6 @@ class RegisterSchema(BaseModel):
     password: str
     phone: int
     
-class KeycloakUserSchema(BaseModel):
-    firstName: str
-    lastName: str
-    username: str
-    email: str
-    emailVerified: bool = True
-    enabled: bool = True
-
 
 class KeycloakUserUpdateSchema(BaseModel):
     firstName: str
