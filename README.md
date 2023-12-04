@@ -17,13 +17,18 @@ The goal of this project is to create a stock software of products for a laborat
 
 ## Run and instalation
 
-The `frontend` is `builded` with `Angular`. You will need to install dependencies and add angular CLI commands to run this project.
+The `frontend` is `builded` with `Angular`. This is a client interface when user can use to do requests and get response for app functionality. You will need to install dependencies and add angular CLI commands to run this project.
 Inside the folder `frontend` search the files inside `docs` folder and follow the instroctions to configure the `Angular app`.
 
 ### Backend
 
-The `backend` is `builded` with `PHP`. You will need to install some dependencies to run this project.
+The `backend` is `builded` with `PHP`. This is a server to receive all user request, process all datas with the database and give a users correct response. You will need to install some dependencies to run this project.
 Inside the folder `backend` search the files inside `docs` folder and follow the instroctions to configure the `PHP app`.
+
+### Api Gatway
+
+The `api gateway` is `created` with `FastApi`. This is a intermediary between front and back to manage users request and authorizations integrated with keycloak. You will need to install some dependencies to run this project.
+Inside the folder `apigateway` search the files inside `docs` folder and follow the instroctions to configure the `FastApi app`.
 
 ### Database
 
