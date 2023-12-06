@@ -3,17 +3,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product } from './interfaces';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
-import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   apiUrl = environment.ApiUrl;
-  private tokenKey = 'token';
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient) { }
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -60,7 +58,7 @@ export class ApiService {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    
+
     window.alert(errorMessage);
     return throwError(() => {
       return errorMessage;

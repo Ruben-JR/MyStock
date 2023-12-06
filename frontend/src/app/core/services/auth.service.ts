@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { Auth } from 'src/app/core/auth/auth.component';
 import { Router } from '@angular/router';
 
@@ -7,7 +6,6 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  apiUrl = environment.ApiUrl;
   private tokenKey = 'token';
 
   constructor(private authentication: Auth, private router: Router) { }
