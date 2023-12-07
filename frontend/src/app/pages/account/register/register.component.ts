@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
+
 export class RegisterComponent {
   hide = true;
   email = new FormControl('', [Validators.required, Validators.email]);
