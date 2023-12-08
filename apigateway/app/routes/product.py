@@ -26,8 +26,13 @@ async def create_product(payload: ProductSchema, user: dict = Depends(get_user))
 
     headers = {"Content-Type": "application/json"}
     r = requests.post(BACKEND_URL, headers=headers + "/create-products", json=payload.dict())
-    response = r.json()
-    return response
+    if r.status_code == 200:
+        response = r.json()
+        return response
+    elif r.status_code == 404:
+        raise HTTPException(status_code=404, detail="Item not created")
+    else:
+        raise HTTPException(status_code=r.status_code, detail="Server error")
 
 @router.get("/get-products")
 async def get_product(user: dict = Depends(get_user)):
@@ -37,8 +42,13 @@ async def get_product(user: dict = Depends(get_user)):
     check_user_role(user, ['Admin'])
 
     r = requests.get(BACKEND_URL + "/get-products")
-    response = r.json()
-    return response
+    if r.status_code == 200:
+        response = r.json()
+        return response
+    elif r.status_code == 404:
+        raise HTTPException(status_code=404, detail="Item not found")
+    else:
+        raise HTTPException(status_code=r.status_code, detail="Server error")
 
 @router.get("/get-products-id/{id}")
 async def get_product_id(id: int, user: dict = Depends(get_user)):
@@ -48,8 +58,13 @@ async def get_product_id(id: int, user: dict = Depends(get_user)):
     check_user_role(user, ['Admin'])
 
     r = requests.get(BACKEND_URL + f"/get-products-id/{id}")
-    response = r.json()
-    return response
+    if r.status_code == 200:
+        response = r.json()
+        return response
+    elif r.status_code == 404:
+        raise HTTPException(status_code=404, detail="Item not found")
+    else:
+        raise HTTPException(status_code=r.status_code, detail="Server error")
 
 @router.put("/update-products/{id}")
 async def update_product(id: int, payload: ProductSchema, user: dict = Depends(get_user)):

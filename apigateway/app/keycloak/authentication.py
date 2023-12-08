@@ -35,7 +35,7 @@ async def register(payload: RegisterSchema):
         keycloak_user_id = keycloak_admin.create_user(
             {
                 "username": payload.username,
-                "email": payload.email,  
+                "email": payload.email,
                 "enabled": True,
                 "firstName": payload.firstName,
                 "lastName": payload.lastName,
@@ -46,14 +46,14 @@ async def register(payload: RegisterSchema):
             },
             exist_ok=False
         )
-        
+
         keycloak_admin.set_user_password(keycloak_user_id, payload.password, False)
-        
+
     except KeycloakError as err:
         raise HTTPException(status_code=err.response_code, detail=err.response_body.__str__())
-    
+
     return {'user_id': keycloak_user_id}
-        
+
 
 @router.post("/logout")
 async def logout(request: Request):
