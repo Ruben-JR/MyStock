@@ -18,49 +18,84 @@ BACKEND_URL = os.getenv("BACKEND_URL")
 router = APIRouter(tags=["Products"])
 
 @router.post("/create-products")
-def create_product(payload: ProductSchema, user: dict = Depends(get_user)):
+async def create_product(payload: ProductSchema, user: dict = Depends(get_user)):
     if user is None:
         raise HTTPException(status_code=401, detail="Invalid token or user information not found")
-    
+
+    check_user_role(user, ['Admin'])
+
     headers = {"Content-Type": "application/json"}
-    r = requests.post(BACKEND_URL, headers=headers + "/create-products")
-    response = r.json()
-    return response
+    r = requests.post(BACKEND_URL, headers=headers + "/create-products", json=payload.dict())
+    if r.status_code == 200:
+        response = r.json()
+        return response
+    elif r.status_code == 404:
+        raise HTTPException(status_code=404, detail="Item not created")
+    else:
+        raise HTTPException(status_code=r.status_code, detail="Server error")
 
 @router.get("/get-products")
-def get_product(user: dict = Depends(get_user)):
+async def get_product(user: dict = Depends(get_user)):
     if user is None:
         raise HTTPException(status_code=401, detail="Invalid token or user information not found")
-    
+
+    check_user_role(user, ['Admin'])
+
     r = requests.get(BACKEND_URL + "/get-products")
-    response = r.json()
-    return response
+    if r.status_code == 200:
+        response = r.json()
+        return response
+    elif r.status_code == 404:
+        raise HTTPException(status_code=404, detail="Item not found")
+    else:
+        raise HTTPException(status_code=r.status_code, detail="Server error")
 
-@router.get("/get-products-id/<id>")
-def get_product_id(id: int, user: dict = Depends(get_user)):
+@router.get("/get-products-id/{id}")
+async def get_product_id(id: int, user: dict = Depends(get_user)):
     if user is None:
         raise HTTPException(status_code=401, detail="Invalid token or user information not found")
-    
-    r = requests.post(BACKEND_URL + "/get-products-id/<id>")
-    response = r.json()
-    return response
 
-@router.put("/update-products/<id>")
-def update_product(payload: ProductSchema, user: dict = Depends(get_user)):
+    check_user_role(user, ['Admin'])
+
+    r = requests.get(BACKEND_URL + f"/get-products-id/{id}")
+    if r.status_code == 200:
+        response = r.json()
+        return response
+    elif r.status_code == 404:
+        raise HTTPException(status_code=404, detail="Item not found")
+    else:
+        raise HTTPException(status_code=r.status_code, detail="Server error")
+
+@router.put("/update-products/{id}")
+async def update_product(id: int, payload: ProductSchema, user: dict = Depends(get_user)):
     if user is None:
         raise HTTPException(status_code=401, detail="Invalid token or user information not found")
-    
+
+    check_user_role(user, ['Admin'])
+
     headers = {"Content-Type": "application/json"}
-    r = requests.post(BACKEND_URL, headers=headers + "/update-products/<id>")
-    response = r.json()
-    return response
+    r = requests.put(BACKEND_URL, headers=headers + f"/update-products/{id}", json=payload.dict())
+    if r.status_code == 200:
+        response = r.json()
+        return response
+    elif r.status_code == 404:
+        raise HTTPException(status_code=404, detail="Item not found")
+    else:
+        raise HTTPException(status_code=r.status_code, detail="Server error")
 
-@router.delete("/delete-products/<id>")
-def delete_product(user: dict = Depends(get_user)):
+@router.delete("/delete-products/{id}")
+async def delete_product(user: dict = Depends(get_user)):
     if user is None:
         raise HTTPException(status_code=401, detail="Invalid token or user information not found")
-    
+
+    check_user_role(user, ['Admin'])
+
     headers = {"Content-Type": "application/json"}
-    r = requests.post(BACKEND_URL, headers=headers + "/delete-products/<id>")
-    response = r.json()
-    return response
+    r = requests.delete(BACKEND_URL, headers=headers + f"/delete-products/{id}")
+    if r.status_code == 200:
+        response = r.json()
+        return response
+    elif r.status_code == 404:
+        raise HTTPException(status_code=404, detail="Item not found")
+    else:
+        raise HTTPException(status_code=r.status_code, detail="Server error")
